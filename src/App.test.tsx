@@ -9,22 +9,6 @@ describe('App', () => {
     expect(screen.getByLabelText(/preview box/i)).toBeInTheDocument();
   });
 
-  describe('should show inputs for rounding off the corners', () => {
-    const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
-
-    corners.forEach((corner) => {
-      it(corner, () => {
-        render(<App />);
-
-        expect(
-          screen.getByRole('spinbutton', {
-            name: new RegExp(`${corner} corner`, 'i'),
-          }),
-        ).toBeInTheDocument();
-      });
-    });
-  });
-
   it("shouldn't round the preview box by default", () => {
     render(<App />);
     const previewBox = screen.getByLabelText(/preview box/i);
@@ -32,9 +16,24 @@ describe('App', () => {
 
     expect(previewBoxStyle.borderRadius).toBe('0 0 0 0');
   });
+});
 
-  it('inputs should have an initial value of 0', () => {
-    const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+describe("App's inputs for rounding off the corners", () => {
+  const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+
+  it('should be displayed', () => {
+    render(<App />);
+
+    corners.forEach((corner) => {
+      expect(
+        screen.getByRole('spinbutton', {
+          name: new RegExp(`${corner} corner`, 'i'),
+        }),
+      ).toBeInTheDocument();
+    });
+  });
+
+  it('should have an initial value of 0', () => {
     render(<App />);
 
     corners.forEach((corner) => {
