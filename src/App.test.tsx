@@ -24,4 +24,12 @@ describe('App', () => {
       });
     });
   });
+
+  it("shouldn't round the preview box by default", () => {
+    render(<App />);
+    const previewBox = screen.getByLabelText(/preview box/i);
+    const previewBoxStyle = getComputedStyle(previewBox);
+
+    expect(previewBoxStyle.borderRadius).toBe('0 0 0 0');
+  });
 });
