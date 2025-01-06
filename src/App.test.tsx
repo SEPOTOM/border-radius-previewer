@@ -32,4 +32,17 @@ describe('App', () => {
 
     expect(previewBoxStyle.borderRadius).toBe('0 0 0 0');
   });
+
+  it('inputs should have an initial value of 0', () => {
+    const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+    render(<App />);
+
+    corners.forEach((corner) => {
+      expect(
+        screen.getByRole('spinbutton', {
+          name: new RegExp(`${corner} corner`, 'i'),
+        }),
+      ).toHaveDisplayValue('0');
+    });
+  });
 });
