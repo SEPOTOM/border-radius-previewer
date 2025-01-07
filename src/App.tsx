@@ -38,6 +38,9 @@ const App = () => {
 
   return (
     <>
+      <button type="button" role="switch" aria-checked="false">
+        Switch the mode
+      </button>
       <input
         type="number"
         aria-label="Top-left corner"
