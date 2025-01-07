@@ -1,5 +1,7 @@
 import { ChangeEvent, FC, useState } from 'react';
 
+import { borderRadiusObjToStr } from '@/utils';
+
 import { NormalModeControlsProps } from './types';
 
 const NormalModeControls: FC<NormalModeControlsProps> = ({
@@ -21,22 +23,7 @@ const NormalModeControls: FC<NormalModeControlsProps> = ({
 
     setBorderRadiusValues(newBorderRadiusValues);
 
-    const borderRadius = [
-      newBorderRadiusValues['top-left'],
-      newBorderRadiusValues['top-right'],
-      newBorderRadiusValues['bottom-right'],
-      newBorderRadiusValues['bottom-left'],
-    ]
-      .map((value) => {
-        const parsedValue = parseFloat(value);
-
-        if (isNaN(parsedValue) || parsedValue === 0) {
-          return '0';
-        } else {
-          return `${parsedValue}px`;
-        }
-      })
-      .join(' ');
+    const borderRadius = borderRadiusObjToStr(newBorderRadiusValues);
 
     onBorderRadiusChange(borderRadius);
   };
