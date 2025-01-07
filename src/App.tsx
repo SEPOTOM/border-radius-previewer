@@ -1,36 +1,13 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
+
+import { NormalModeControls } from '@/components';
 
 const App = () => {
-  const [borderRadiusValues, setBorderRadiusValues] = useState({
-    'top-left': '0',
-    'top-right': '0',
-    'bottom-right': '0',
-    'bottom-left': '0',
-  });
+  const [borderRadius, setBorderRadius] = useState('0 0 0 0');
 
-  const handleBorderRadiusChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setBorderRadiusValues({
-      ...borderRadiusValues,
-      [e.target.name]: e.target.value,
-    });
+  const handleBorderRadiusChange = (newBorderRadius: string) => {
+    setBorderRadius(newBorderRadius);
   };
-
-  const borderRadius = [
-    borderRadiusValues['top-left'],
-    borderRadiusValues['top-right'],
-    borderRadiusValues['bottom-right'],
-    borderRadiusValues['bottom-left'],
-  ]
-    .map((value) => {
-      const parsedValue = parseFloat(value);
-
-      if (isNaN(parsedValue) || parsedValue === 0) {
-        return '0';
-      } else {
-        return `${parsedValue}px`;
-      }
-    })
-    .join(' ');
 
   const handleCopyButtonClick = async () => {
     await navigator.clipboard.writeText(borderRadius);
@@ -41,40 +18,16 @@ const App = () => {
       <button type="button" role="switch" aria-checked="false">
         Switch the mode
       </button>
-      <input
-        type="number"
-        aria-label="Top-left corner"
-        name="top-left"
-        value={borderRadiusValues['top-left']}
-        onChange={handleBorderRadiusChange}
-      />
-      <input
-        type="number"
-        aria-label="Top-right corner"
-        value={borderRadiusValues['top-right']}
-        name="top-right"
-        onChange={handleBorderRadiusChange}
-      />
-      <div
-        role="presentation"
-        aria-label="Preview box"
-        className="h-24 w-24 bg-main"
-        style={{ borderRadius }}
-      />
-      <input
-        type="number"
-        aria-label="Bottom-left corner"
-        value={borderRadiusValues['bottom-left']}
-        name="bottom-left"
-        onChange={handleBorderRadiusChange}
-      />
-      <input
-        type="number"
-        aria-label="Bottom-right corner"
-        value={borderRadiusValues['bottom-right']}
-        name="bottom-right"
-        onChange={handleBorderRadiusChange}
-      />
+
+      <NormalModeControls onBorderRadiusChange={handleBorderRadiusChange}>
+        <div
+          role="presentation"
+          aria-label="Preview box"
+          className="h-24 w-24 bg-main"
+          style={{ borderRadius }}
+        />
+      </NormalModeControls>
+
       <button type="button" onClick={() => void handleCopyButtonClick()}>
         Copy to clipboard!
       </button>
