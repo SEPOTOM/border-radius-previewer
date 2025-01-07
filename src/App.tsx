@@ -32,6 +32,10 @@ const App = () => {
     })
     .join(' ');
 
+  const handleCopyButtonClick = async () => {
+    await navigator.clipboard.writeText(borderRadius);
+  };
+
   return (
     <>
       <input
@@ -68,7 +72,9 @@ const App = () => {
         name="bottom-right"
         onChange={handleBorderRadiusChange}
       />
-      <button type="button">Copy to clipboard!</button>
+      <button type="button" onClick={() => void handleCopyButtonClick()}>
+        Copy to clipboard!
+      </button>
     </>
   );
 };
