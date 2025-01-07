@@ -68,6 +68,7 @@ const App = () => {
         name="bottom-right"
         onChange={handleBorderRadiusChange}
       />
+      <button type="button">Copy to clipboard!</button>
     </>
   );
 };
