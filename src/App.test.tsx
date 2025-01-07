@@ -10,6 +10,12 @@ describe('App', () => {
     expect(screen.getByLabelText(/preview box/i)).toBeInTheDocument();
   });
 
+  it('should show the mode switch', () => {
+    render(<App />);
+
+    expect(screen.getByRole('switch', { name: /mode/i })).toBeInTheDocument();
+  });
+
   it('should show the copy to clipboard button', () => {
     render(<App />);
 
