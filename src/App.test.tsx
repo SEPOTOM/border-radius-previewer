@@ -18,6 +18,31 @@ describe('App', () => {
     ).toBeInTheDocument();
   });
 
+  it('should copy the value of the border radius to the clipboard after clicking the copy button', async () => {
+    const { user } = renderWithUser(<App />);
+    const writeTextSpy = vi.spyOn(navigator.clipboard, 'writeText');
+
+    await user.type(
+      screen.getByRole('spinbutton', { name: /top-left/i }),
+      '56',
+    );
+    await user.type(
+      screen.getByRole('spinbutton', { name: /top-right/i }),
+      '98',
+    );
+    await user.type(
+      screen.getByRole('spinbutton', { name: /bottom-left/i }),
+      '10',
+    );
+
+    await user.click(
+      screen.getByRole('button', { name: /copy to clipboard/i }),
+    );
+
+    expect(writeTextSpy).toHaveBeenCalledTimes(1);
+    expect(writeTextSpy).toHaveBeenCalledWith('56px 98px 0 10px');
+  });
+
   it("shouldn't round the preview box by default", () => {
     render(<App />);
     const previewBox = screen.getByLabelText(/preview box/i);
