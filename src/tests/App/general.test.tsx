@@ -56,4 +56,10 @@ describe('App', () => {
 
     expect(previewBoxStyle.borderRadius).toBe('0 0 0 0');
   });
+
+  it('the mode switch should be turned off by default', () => {
+    render(<App />);
+
+    expect(screen.getByRole('switch', { name: /mode/i })).not.toBeChecked();
+  });
 });
