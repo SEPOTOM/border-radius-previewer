@@ -1,46 +1,26 @@
 import { ChangeEvent, useState } from 'react';
 
 const App = () => {
-  const [borderRadiusValues, setBorderRadiusValues] = useState([
-    '0',
-    '0',
-    '0',
-    '0',
-  ]);
+  const [borderRadiusValues, setBorderRadiusValues] = useState({
+    'top-left': '0',
+    'top-right': '0',
+    'bottom-right': '0',
+    'bottom-left': '0',
+  });
 
   const handleBorderRadiusChange = (e: ChangeEvent<HTMLInputElement>) => {
-    switch (e.target.name) {
-      case 'top-left': {
-        setBorderRadiusValues([e.target.value, ...borderRadiusValues.slice(1)]);
-        break;
-      }
-      case 'top-right': {
-        setBorderRadiusValues([
-          borderRadiusValues[0],
-          e.target.value,
-          ...borderRadiusValues.slice(2),
-        ]);
-        break;
-      }
-      case 'bottom-right': {
-        setBorderRadiusValues([
-          ...borderRadiusValues.slice(0, 2),
-          e.target.value,
-          borderRadiusValues[3],
-        ]);
-        break;
-      }
-      case 'bottom-left': {
-        setBorderRadiusValues([
-          ...borderRadiusValues.slice(0, 3),
-          e.target.value,
-        ]);
-        break;
-      }
-    }
+    setBorderRadiusValues({
+      ...borderRadiusValues,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const borderRadius = borderRadiusValues
+  const borderRadius = [
+    borderRadiusValues['top-left'],
+    borderRadiusValues['top-right'],
+    borderRadiusValues['bottom-right'],
+    borderRadiusValues['bottom-left'],
+  ]
     .map((value) => {
       const parsedValue = parseFloat(value);
 
@@ -58,13 +38,13 @@ const App = () => {
         type="number"
         aria-label="Top-left corner"
         name="top-left"
-        value={borderRadiusValues[0]}
+        value={borderRadiusValues['top-left']}
         onChange={handleBorderRadiusChange}
       />
       <input
         type="number"
         aria-label="Top-right corner"
-        value={borderRadiusValues[1]}
+        value={borderRadiusValues['top-right']}
         name="top-right"
         onChange={handleBorderRadiusChange}
       />
@@ -77,14 +57,14 @@ const App = () => {
       <input
         type="number"
         aria-label="Bottom-left corner"
-        value={borderRadiusValues[3]}
+        value={borderRadiusValues['bottom-left']}
         name="bottom-left"
         onChange={handleBorderRadiusChange}
       />
       <input
         type="number"
         aria-label="Bottom-right corner"
-        value={borderRadiusValues[2]}
+        value={borderRadiusValues['bottom-right']}
         name="bottom-right"
         onChange={handleBorderRadiusChange}
       />
