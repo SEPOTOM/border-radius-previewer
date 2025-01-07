@@ -1,9 +1,6 @@
-export const borderRadiusObjToStr = (obj: {
-  'top-left': string;
-  'top-right': string;
-  'bottom-left': string;
-  'bottom-right': string;
-}): string =>
+import { BorderRadiusValues } from '@/types';
+
+export const borderRadiusObjToStr = (obj: BorderRadiusValues): string =>
   [obj['top-left'], obj['top-right'], obj['bottom-right'], obj['bottom-left']]
     .map((value) => {
       const parsedValue = parseFloat(value);
