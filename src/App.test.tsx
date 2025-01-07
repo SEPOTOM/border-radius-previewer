@@ -10,6 +10,14 @@ describe('App', () => {
     expect(screen.getByLabelText(/preview box/i)).toBeInTheDocument();
   });
 
+  it('should show the copy to clipboard button', () => {
+    render(<App />);
+
+    expect(
+      screen.getByRole('button', { name: /copy to clipboard/i }),
+    ).toBeInTheDocument();
+  });
+
   it("shouldn't round the preview box by default", () => {
     render(<App />);
     const previewBox = screen.getByLabelText(/preview box/i);
