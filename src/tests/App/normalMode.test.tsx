@@ -18,6 +18,20 @@ describe('inputs for rounding off the corners', () => {
     });
   });
 
+  it('should be hidden in advanced mode', async () => {
+    const { user } = renderWithUser(<App />);
+
+    await user.click(screen.getByRole('switch', { name: /mode/i }));
+
+    corners.forEach((corner) => {
+      expect(
+        screen.queryByRole('spinbutton', {
+          name: new RegExp(`${corner} corner`, 'i'),
+        }),
+      ).not.toBeInTheDocument();
+    });
+  });
+
   it('should have an initial value of 0', () => {
     render(<App />);
 
