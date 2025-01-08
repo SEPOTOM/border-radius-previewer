@@ -38,6 +38,19 @@ const App = () => {
         />
       </NormalModeControls>
 
+      {isAdvanced && (
+        <>
+          <input type="number" aria-label="Horizontal top-left radius" />
+          <input type="number" aria-label="Horizontal top-right radius" />
+          <input type="number" aria-label="Horizontal bottom-left radius" />
+          <input type="number" aria-label="Horizontal bottom-right radius" />
+          <input type="number" aria-label="Vertical top-left radius" />
+          <input type="number" aria-label="Vertical top-right radius" />
+          <input type="number" aria-label="Vertical bottom-left radius" />
+          <input type="number" aria-label="Vertical bottom-right radius" />
+        </>
+      )}
+
       <button type="button" onClick={() => void handleCopyButtonClick()}>
         Copy to clipboard!
       </button>
