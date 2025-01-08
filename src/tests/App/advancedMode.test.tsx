@@ -3,6 +3,16 @@ import { render, screen } from '@testing-library/react';
 import App from '@/App';
 import { renderWithUser } from '@/tests/utils';
 
+describe('App in advanced mode', () => {
+  it('should show the preview box', async () => {
+    const { user } = renderWithUser(<App />);
+
+    await user.click(screen.getByRole('switch', { name: /mode/i }));
+
+    expect(screen.getByLabelText(/preview box/i)).toBeInTheDocument();
+  });
+});
+
 describe('inputs for specifying corresponding radii', () => {
   const radii = [
     'horizontal top-left',
