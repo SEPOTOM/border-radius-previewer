@@ -1,6 +1,9 @@
 import { ReactNode } from 'react';
 
+import { BorderRadiusValues } from '@/types';
+
 export interface NormalModeControlsProps {
   children: ReactNode;
-  onBorderRadiusChange: (borderRadius: string) => void;
+  borderRadiusValues: BorderRadiusValues;
+  onBorderRadiusValuesChange: (borderRadiusValues: BorderRadiusValues) => void;
 }

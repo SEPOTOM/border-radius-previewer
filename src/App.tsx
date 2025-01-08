@@ -1,19 +1,29 @@
 import { useState } from 'react';
 
 import { AdvancedModeControls, NormalModeControls } from '@/components';
+import { BorderRadiusValues } from '@/types';
+import { borderRadiusObjToStr } from '@/utils';
 
 const App = () => {
-  const [borderRadius, setBorderRadius] = useState('0 0 0 0');
+  const [borderRadiusValues, setBorderRadiusValues] =
+    useState<BorderRadiusValues>({
+      'top-left': '0',
+      'top-right': '0',
+      'bottom-right': '0',
+      'bottom-left': '0',
+    });
   const [advancedBorderRadius, setAdvancedBorderRadius] =
     useState('0 0 0 0 / 0 0 0 0');
   const [isAdvanced, setIsAdvanced] = useState(false);
 
+  const borderRadius = borderRadiusObjToStr(borderRadiusValues);
+
   const handleBorderRadiusChange = (newBorderRadius: string) => {
-    if (isAdvanced) {
-      setAdvancedBorderRadius(newBorderRadius);
-    } else {
-      setBorderRadius(newBorderRadius);
-    }
+    setAdvancedBorderRadius(newBorderRadius);
+  };
+
+  const handleBorderRadiusValuesChange = (newValues: BorderRadiusValues) => {
+    setBorderRadiusValues(newValues);
   };
 
   const handleCopyButtonClick = async () => {
@@ -45,7 +55,10 @@ const App = () => {
             style={{ borderRadius: advancedBorderRadius }}
           />
         </AdvancedModeControls>
-      : <NormalModeControls onBorderRadiusChange={handleBorderRadiusChange}>
+      : <NormalModeControls
+          borderRadiusValues={borderRadiusValues}
+          onBorderRadiusValuesChange={handleBorderRadiusValuesChange}
+        >
           <div
             role="presentation"
             aria-label="Preview box"

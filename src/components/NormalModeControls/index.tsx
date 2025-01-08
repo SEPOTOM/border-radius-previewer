@@ -1,33 +1,17 @@
-import { ChangeEvent, FC, useState } from 'react';
-
-import { BorderRadiusValues } from '@/types';
-import { borderRadiusObjToStr } from '@/utils';
+import { ChangeEvent, FC } from 'react';
 
 import { NormalModeControlsProps } from './types';
 
 const NormalModeControls: FC<NormalModeControlsProps> = ({
   children,
-  onBorderRadiusChange,
+  borderRadiusValues,
+  onBorderRadiusValuesChange,
 }) => {
-  const [borderRadiusValues, setBorderRadiusValues] =
-    useState<BorderRadiusValues>({
-      'top-left': '0',
-      'top-right': '0',
-      'bottom-right': '0',
-      'bottom-left': '0',
-    });
-
   const handleBorderRadiusChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newBorderRadiusValues = {
+    onBorderRadiusValuesChange({
       ...borderRadiusValues,
       [e.target.name]: e.target.value,
-    };
-
-    setBorderRadiusValues(newBorderRadiusValues);
-
-    const borderRadius = borderRadiusObjToStr(newBorderRadiusValues);
-
-    onBorderRadiusChange(borderRadius);
+    });
   };
 
   return (
