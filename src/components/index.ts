@@ -1,3 +1,4 @@
+import AdvancedModeControls from '@/components/AdvancedModeControls';
 import NormalModeControls from '@/components/NormalModeControls';
 
-export { NormalModeControls };
+export { AdvancedModeControls, NormalModeControls };
