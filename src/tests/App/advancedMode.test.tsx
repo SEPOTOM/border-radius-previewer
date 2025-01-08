@@ -3,6 +3,17 @@ import { render, screen } from '@testing-library/react';
 import App from '@/App';
 import { renderWithUser } from '@/tests/utils';
 
+const radii = [
+  'horizontal top-left',
+  'horizontal top-right',
+  'horizontal bottom-right',
+  'horizontal bottom-left',
+  'vertical top-left',
+  'vertical top-right',
+  'vertical bottom-right',
+  'vertical bottom-left',
+];
+
 describe('App in advanced mode', () => {
   it('should show the preview box', async () => {
     await renderInAdvancedMode();
@@ -17,20 +28,32 @@ describe('App in advanced mode', () => {
 
     expect(previewBoxStyle.borderRadius).toBe('0 0 0 0 / 0 0 0 0');
   });
+
+  it('should keep the rounding after switching to normal mode', async () => {
+    const values = ['3', '73', '71', '54', '180', '768', '16', '90'];
+    const { user } = await renderInAdvancedMode();
+
+    for (let i = 0; i < radii.length; i += 1) {
+      await user.type(
+        screen.getByRole('spinbutton', {
+          name: new RegExp(`${radii[i]} radius`, 'i'),
+        }),
+        values[i],
+      );
+    }
+
+    await user.click(screen.getByRole('switch', { name: /mode/i }));
+    await user.click(screen.getByRole('switch', { name: /mode/i }));
+
+    const previewBox = screen.getByLabelText(/preview box/i);
+    const previewBoxStyle = getComputedStyle(previewBox);
+    expect(previewBoxStyle.borderRadius).toBe(
+      '3px 73px 71px 54px / 180px 768px 16px 90px',
+    );
+  });
 });
 
 describe('inputs for specifying corresponding radii', () => {
-  const radii = [
-    'horizontal top-left',
-    'horizontal top-right',
-    'horizontal bottom-right',
-    'horizontal bottom-left',
-    'vertical top-left',
-    'vertical top-right',
-    'vertical bottom-right',
-    'vertical bottom-left',
-  ];
-
   it('should be displayed in advanced mode', async () => {
     await renderInAdvancedMode();
 
