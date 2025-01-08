@@ -29,16 +29,7 @@ const App = () => {
         Switch the mode
       </button>
 
-      <NormalModeControls onBorderRadiusChange={handleBorderRadiusChange}>
-        <div
-          role="presentation"
-          aria-label="Preview box"
-          className="h-24 w-24 bg-main"
-          style={{ borderRadius }}
-        />
-      </NormalModeControls>
-
-      {isAdvanced && (
+      {isAdvanced ?
         <>
           <input
             type="number"
@@ -81,7 +72,15 @@ const App = () => {
             value={0}
           />
         </>
-      )}
+      : <NormalModeControls onBorderRadiusChange={handleBorderRadiusChange}>
+          <div
+            role="presentation"
+            aria-label="Preview box"
+            className="h-24 w-24 bg-main"
+            style={{ borderRadius }}
+          />
+        </NormalModeControls>
+      }
 
       <button type="button" onClick={() => void handleCopyButtonClick()}>
         Copy to clipboard!
