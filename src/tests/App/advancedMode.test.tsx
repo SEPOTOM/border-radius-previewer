@@ -5,9 +5,7 @@ import { renderWithUser } from '@/tests/utils';
 
 describe('App in advanced mode', () => {
   it('should show the preview box', async () => {
-    const { user } = renderWithUser(<App />);
-
-    await user.click(screen.getByRole('switch', { name: /mode/i }));
+    await renderInAdvancedMode();
 
     expect(screen.getByLabelText(/preview box/i)).toBeInTheDocument();
   });
@@ -26,9 +24,7 @@ describe('inputs for specifying corresponding radii', () => {
   ];
 
   it('should be displayed in advanced mode', async () => {
-    const { user } = renderWithUser(<App />);
-
-    await user.click(screen.getByRole('switch', { name: /mode/i }));
+    await renderInAdvancedMode();
 
     radii.forEach((radius) => {
       expect(
@@ -52,9 +48,7 @@ describe('inputs for specifying corresponding radii', () => {
   });
 
   it('should have an initial value of 0', async () => {
-    const { user } = renderWithUser(<App />);
-
-    await user.click(screen.getByRole('switch', { name: /mode/i }));
+    await renderInAdvancedMode();
 
     radii.forEach((radius) => {
       expect(
@@ -65,3 +59,11 @@ describe('inputs for specifying corresponding radii', () => {
     });
   });
 });
+
+async function renderInAdvancedMode() {
+  const renderResults = renderWithUser(<App />);
+
+  await renderResults.user.click(screen.getByRole('switch', { name: /mode/i }));
+
+  return renderResults;
+}
