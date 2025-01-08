@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import App from '@/App';
 import { renderWithUser } from '@/tests/utils';
@@ -26,6 +26,18 @@ describe('inputs for specifying corresponding radii', () => {
           name: new RegExp(`${radius} radius`, 'i'),
         }),
       ).toBeInTheDocument();
+    });
+  });
+
+  it('should be hidden in normal mode', () => {
+    render(<App />);
+
+    radii.forEach((radius) => {
+      expect(
+        screen.queryByRole('spinbutton', {
+          name: new RegExp(`${radius} radius`, 'i'),
+        }),
+      ).not.toBeInTheDocument();
     });
   });
 
