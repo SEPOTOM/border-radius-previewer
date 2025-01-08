@@ -40,14 +40,46 @@ const App = () => {
 
       {isAdvanced && (
         <>
-          <input type="number" aria-label="Horizontal top-left radius" />
-          <input type="number" aria-label="Horizontal top-right radius" />
-          <input type="number" aria-label="Horizontal bottom-left radius" />
-          <input type="number" aria-label="Horizontal bottom-right radius" />
-          <input type="number" aria-label="Vertical top-left radius" />
-          <input type="number" aria-label="Vertical top-right radius" />
-          <input type="number" aria-label="Vertical bottom-left radius" />
-          <input type="number" aria-label="Vertical bottom-right radius" />
+          <input
+            type="number"
+            aria-label="Horizontal top-left radius"
+            value={0}
+          />
+          <input
+            type="number"
+            aria-label="Horizontal top-right radius"
+            value={0}
+          />
+          <input
+            type="number"
+            aria-label="Horizontal bottom-left radius"
+            value={0}
+          />
+          <input
+            type="number"
+            aria-label="Horizontal bottom-right radius"
+            value={0}
+          />
+          <input
+            type="number"
+            aria-label="Vertical top-left radius"
+            value={0}
+          />
+          <input
+            type="number"
+            aria-label="Vertical top-right radius"
+            value={0}
+          />
+          <input
+            type="number"
+            aria-label="Vertical bottom-left radius"
+            value={0}
+          />
+          <input
+            type="number"
+            aria-label="Vertical bottom-right radius"
+            value={0}
+          />
         </>
       )}
 
