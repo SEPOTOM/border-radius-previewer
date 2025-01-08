@@ -3,9 +3,32 @@ import { render, screen } from '@testing-library/react';
 import App from '@/App';
 import { renderWithUser } from '@/tests/utils';
 
-describe('inputs for rounding off the corners', () => {
-  const corners = ['top-left', 'top-right', 'bottom-right', 'bottom-left'];
+const corners = ['top-left', 'top-right', 'bottom-right', 'bottom-left'];
 
+describe('App in normal mode', () => {
+  it('should keep the rounding after switching to advanced mode', async () => {
+    const values = ['31', '52', '89', '90'];
+    const { user } = renderWithUser(<App />);
+
+    for (let i = 0; i < corners.length; i += 1) {
+      await user.type(
+        screen.getByRole('spinbutton', {
+          name: new RegExp(`${corners[i]} corner`, 'i'),
+        }),
+        values[i],
+      );
+    }
+
+    await user.click(screen.getByRole('switch', { name: /mode/i }));
+    await user.click(screen.getByRole('switch', { name: /mode/i }));
+
+    const previewBox = screen.getByLabelText(/preview box/i);
+    const previewBoxStyle = getComputedStyle(previewBox);
+    expect(previewBoxStyle.borderRadius).toBe('31px 52px 89px 90px');
+  });
+});
+
+describe('inputs for rounding off the corners', () => {
   it('should be displayed in normal mode', () => {
     render(<App />);
 
