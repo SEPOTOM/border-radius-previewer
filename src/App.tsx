@@ -41,7 +41,11 @@ const App = () => {
   };
 
   const handleCopyButtonClick = async () => {
-    await navigator.clipboard.writeText(borderRadius);
+    if (isAdvanced) {
+      await navigator.clipboard.writeText(advancedBorderRadius);
+    } else {
+      await navigator.clipboard.writeText(borderRadius);
+    }
   };
 
   const handleModesSwitch = () => {
