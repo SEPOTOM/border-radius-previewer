@@ -51,6 +51,31 @@ describe('App in advanced mode', () => {
       '3px 73px 71px 54px / 180px 768px 16px 90px',
     );
   });
+
+  describe('should keep the values of the radii inputs after switching to normal mode', () => {
+    const values = ['97', '1000', '657', '300', '39', '125', '98', '797'];
+
+    radii.forEach((radius, index) => {
+      it(radius, async () => {
+        const { user } = await renderInAdvancedMode();
+        await user.type(
+          screen.getByRole('spinbutton', {
+            name: new RegExp(`${radius} radius`, 'i'),
+          }),
+          values[index],
+        );
+
+        await user.click(screen.getByRole('switch', { name: /mode/i }));
+        await user.click(screen.getByRole('switch', { name: /mode/i }));
+
+        expect(
+          screen.getByRole('spinbutton', {
+            name: new RegExp(`${radius} radius`, 'i'),
+          }),
+        ).toHaveDisplayValue(new RegExp(values[index], 'i'));
+      });
+    });
+  });
 });
 
 describe('inputs for specifying corresponding radii', () => {
