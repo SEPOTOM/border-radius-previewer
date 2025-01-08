@@ -51,6 +51,12 @@ const App = () => {
             aria-label="Horizontal bottom-right radius"
             value={0}
           />
+          <div
+            role="presentation"
+            aria-label="Preview box"
+            className="h-24 w-24 bg-main"
+            style={{ borderRadius }}
+          />
           <input
             type="number"
             aria-label="Vertical top-left radius"
