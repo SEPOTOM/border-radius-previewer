@@ -23,12 +23,12 @@ describe('inputs for specifying corresponding radii', () => {
   const radii = [
     'horizontal top-left',
     'horizontal top-right',
-    'horizontal bottom-left',
     'horizontal bottom-right',
+    'horizontal bottom-left',
     'vertical top-left',
     'vertical top-right',
-    'vertical bottom-left',
     'vertical bottom-right',
+    'vertical bottom-left',
   ];
 
   it('should be displayed in advanced mode', async () => {
@@ -64,6 +64,31 @@ describe('inputs for specifying corresponding radii', () => {
           name: new RegExp(`${radius} radius`, 'i'),
         }),
       ).toHaveDisplayValue('0');
+    });
+  });
+
+  describe('should update the value of the appropriate radius', () => {
+    const values = ['87', '92', '134', '56', '10', '303', '47', '28'];
+
+    radii.forEach((radius, index) => {
+      it(radius, async () => {
+        const { user } = await renderInAdvancedMode();
+
+        await user.type(
+          screen.getByRole('spinbutton', { name: new RegExp(radius, 'i') }),
+          values[index],
+        );
+
+        const previewBox = screen.getByLabelText(/preview box/i);
+        const previewBoxStyle = getComputedStyle(previewBox);
+        const borderRadiusValues = previewBoxStyle.borderRadius
+          .split(' ')
+          .filter((value) => value !== '/');
+
+        expect(borderRadiusValues[index]).toMatch(
+          new RegExp(values[index], 'i'),
+        );
+      });
     });
   });
 });
