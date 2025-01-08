@@ -35,7 +35,7 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
             className="outline-focus w-full max-w-full rounded-sm bg-main p-1 text-xl tracking-wider text-secondary"
           />
         </div>
-        <div className="flex max-w-36 shrink-0 grow-0 basis-1/2 flex-col gap-y-3 pr-2">
+        <div className="flex max-w-36 shrink-0 grow-0 basis-1/2 flex-col gap-y-3 pl-2">
           <input
             type="number"
             aria-label="Horizontal top-right radius"
@@ -74,7 +74,7 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
             className="outline-focus w-full max-w-full rounded-sm bg-main p-1 text-xl tracking-wider text-secondary"
           />
         </div>
-        <div className="flex max-w-36 shrink-0 grow-0 basis-1/2 flex-col gap-y-3 pr-2">
+        <div className="flex max-w-36 shrink-0 grow-0 basis-1/2 flex-col gap-y-3 pl-2">
           <input
             type="number"
             aria-label="Horizontal bottom-right radius"
