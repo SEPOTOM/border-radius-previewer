@@ -62,4 +62,12 @@ describe('App', () => {
 
     expect(screen.getByRole('switch', { name: /mode/i })).not.toBeChecked();
   });
+
+  it('the mode switch should be turned on after clicking on it', async () => {
+    const { user } = renderWithUser(<App />);
+
+    await user.click(screen.getByRole('switch', { name: /mode/i }));
+
+    expect(screen.getByRole('switch', { name: /mode/i })).toBeChecked();
+  });
 });
