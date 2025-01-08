@@ -76,6 +76,26 @@ describe('App in advanced mode', () => {
       });
     });
   });
+
+  it('should copy the value of the border radius to the clipboard after clicking the copy button', async () => {
+    const values = ['0', '25', '0', '0', '73', '83', '0', '16'];
+    const { user } = await renderInAdvancedMode();
+    const writeTextSpy = vi.spyOn(navigator.clipboard, 'writeText');
+
+    for (let i = 0; i < radii.length; i += 1) {
+      await user.type(
+        screen.getByRole('spinbutton', { name: new RegExp(radii[i], 'i') }),
+        values[i],
+      );
+    }
+
+    await user.click(
+      screen.getByRole('button', { name: /copy to clipboard/i }),
+    );
+
+    expect(writeTextSpy).toHaveBeenCalledTimes(1);
+    expect(writeTextSpy).toHaveBeenCalledWith('0 25px 0 0 / 73px 83px 0 16px');
+  });
 });
 
 describe('inputs for specifying corresponding radii', () => {
