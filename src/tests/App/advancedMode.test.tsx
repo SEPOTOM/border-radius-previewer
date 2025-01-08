@@ -29,5 +29,19 @@ describe('App in advanced mode', () => {
         ).toBeInTheDocument();
       });
     });
+
+    it('should have an initial value of 0', async () => {
+      const { user } = renderWithUser(<App />);
+
+      await user.click(screen.getByRole('switch', { name: /mode/i }));
+
+      radii.forEach((radius) => {
+        expect(
+          screen.getByRole('spinbutton', {
+            name: new RegExp(`${radius} radius`, 'i'),
+          }),
+        ).toHaveDisplayValue('0');
+      });
+    });
   });
 });
