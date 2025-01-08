@@ -9,6 +9,14 @@ describe('App in advanced mode', () => {
 
     expect(screen.getByLabelText(/preview box/i)).toBeInTheDocument();
   });
+
+  it("shouldn't round the preview box by default", async () => {
+    await renderInAdvancedMode();
+    const previewBox = screen.getByLabelText(/preview box/i);
+    const previewBoxStyle = getComputedStyle(previewBox);
+
+    expect(previewBoxStyle.borderRadius).toBe('0 0 0 0 / 0 0 0 0');
+  });
 });
 
 describe('inputs for specifying corresponding radii', () => {
