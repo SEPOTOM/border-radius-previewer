@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { AdvancedModeControls, NormalModeControls } from '@/components';
+import { AdvancedModeControls, Button, NormalModeControls } from '@/components';
 import { AdvancedBorderRadiusValues, BorderRadiusValues } from '@/types';
 import { borderRadiusObjToStr, borderRadiusObjToStrAdvanced } from '@/utils';
 
@@ -54,15 +54,13 @@ const App = () => {
 
   return (
     <div className="mx-auto flex h-full max-w-5xl flex-col justify-center gap-y-3 p-3">
-      <button
-        type="button"
+      <Button
         role="switch"
         aria-checked={isAdvanced}
         onClick={handleModesSwitch}
-        className="mx-auto rounded-md border-4 border-main p-2 text-xl font-black uppercase text-main transition-colors hover:bg-main hover:text-secondary active:border-main-dark active:bg-main-dark active:text-secondary active:transition-none"
       >
         Switch the mode
-      </button>
+      </Button>
 
       {isAdvanced ?
         <AdvancedModeControls
@@ -89,13 +87,9 @@ const App = () => {
         </NormalModeControls>
       }
 
-      <button
-        type="button"
-        onClick={() => void handleCopyButtonClick()}
-        className="mx-auto rounded-md border-4 border-main p-2 text-xl font-black uppercase text-main transition-colors hover:bg-main hover:text-secondary active:border-main-dark active:bg-main-dark active:text-secondary active:transition-none"
-      >
+      <Button onClick={() => void handleCopyButtonClick()}>
         Copy to clipboard!
-      </button>
+      </Button>
     </div>
   );
 };
