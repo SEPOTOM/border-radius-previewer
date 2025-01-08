@@ -1,4 +1,4 @@
-import { BorderRadiusValues } from '@/types';
+import { AdvancedBorderRadiusValues, BorderRadiusValues } from '@/types';
 
 export const borderRadiusObjToStr = (obj: BorderRadiusValues): string =>
   [obj['top-left'], obj['top-right'], obj['bottom-right'], obj['bottom-left']]
@@ -13,16 +13,9 @@ export const borderRadiusObjToStr = (obj: BorderRadiusValues): string =>
     })
     .join(' ');
 
-export const borderRadiusObjToStrAdvanced = (obj: {
-  'horz-top-left': string;
-  'horz-top-right': string;
-  'horz-bottom-left': string;
-  'horz-bottom-right': string;
-  'vert-top-left': string;
-  'vert-top-right': string;
-  'vert-bottom-left': string;
-  'vert-bottom-right': string;
-}): string => {
+export const borderRadiusObjToStrAdvanced = (
+  obj: AdvancedBorderRadiusValues,
+): string => {
   const borderRadius = [
     obj['horz-top-left'],
     obj['horz-top-right'],
