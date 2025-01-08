@@ -1,5 +1,7 @@
 import { ChangeEvent, FC, useState } from 'react';
 
+import { borderRadiusObjToStrAdvanced } from '@/utils';
+
 import { AdvancedModeControlsProps } from './types';
 
 const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
@@ -25,28 +27,9 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
 
     setBorderRadiusValues(newBorderRadiusValues);
 
-    const borderRadius = [
-      newBorderRadiusValues['horz-top-left'],
-      newBorderRadiusValues['horz-top-right'],
-      newBorderRadiusValues['horz-bottom-right'],
-      newBorderRadiusValues['horz-bottom-left'],
-      newBorderRadiusValues['vert-top-left'],
-      newBorderRadiusValues['vert-top-right'],
-      newBorderRadiusValues['vert-bottom-right'],
-      newBorderRadiusValues['vert-bottom-left'],
-    ].map((value) => {
-      const parsedValue = parseFloat(value);
+    const borderRadius = borderRadiusObjToStrAdvanced(newBorderRadiusValues);
 
-      if (isNaN(parsedValue) || parsedValue === 0) {
-        return '0';
-      } else {
-        return `${parsedValue}px`;
-      }
-    });
-
-    borderRadius.splice(4, 0, '/');
-
-    onBorderRadiusChange(borderRadius.join(' '));
+    onBorderRadiusChange(borderRadius);
   };
 
   return (

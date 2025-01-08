@@ -1,3 +1,6 @@
-import { borderRadiusObjToStr } from '@/utils/converters';
+import {
+  borderRadiusObjToStr,
+  borderRadiusObjToStrAdvanced,
+} from '@/utils/converters';
 
-export { borderRadiusObjToStr };
+export { borderRadiusObjToStr, borderRadiusObjToStrAdvanced };
