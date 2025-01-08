@@ -55,7 +55,7 @@ const App = () => {
             role="presentation"
             aria-label="Preview box"
             className="h-24 w-24 bg-main"
-            style={{ borderRadius }}
+            style={{ borderRadius: '0 0 0 0 / 0 0 0 0' }}
           />
           <input
             type="number"
