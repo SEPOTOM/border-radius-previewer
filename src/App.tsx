@@ -4,6 +4,7 @@ import { NormalModeControls } from '@/components';
 
 const App = () => {
   const [borderRadius, setBorderRadius] = useState('0 0 0 0');
+  const [isAdvanced, setIsAdvanced] = useState(false);
 
   const handleBorderRadiusChange = (newBorderRadius: string) => {
     setBorderRadius(newBorderRadius);
@@ -13,9 +14,18 @@ const App = () => {
     await navigator.clipboard.writeText(borderRadius);
   };
 
+  const handleModesSwitch = () => {
+    setIsAdvanced(!isAdvanced);
+  };
+
   return (
     <>
-      <button type="button" role="switch" aria-checked="false">
+      <button
+        type="button"
+        role="switch"
+        aria-checked={isAdvanced}
+        onClick={handleModesSwitch}
+      >
         Switch the mode
       </button>
 
