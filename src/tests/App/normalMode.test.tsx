@@ -26,6 +26,31 @@ describe('App in normal mode', () => {
     const previewBoxStyle = getComputedStyle(previewBox);
     expect(previewBoxStyle.borderRadius).toBe('31px 52px 89px 90px');
   });
+
+  describe('should keep the values of the corner inputs after switching to advanced mode', () => {
+    const values = ['60', '152', '67', '83'];
+
+    corners.forEach((corner, index) => {
+      it(corner, async () => {
+        const { user } = renderWithUser(<App />);
+        await user.type(
+          screen.getByRole('spinbutton', {
+            name: new RegExp(`${corner} corner`, 'i'),
+          }),
+          values[index],
+        );
+
+        await user.click(screen.getByRole('switch', { name: /mode/i }));
+        await user.click(screen.getByRole('switch', { name: /mode/i }));
+
+        expect(
+          screen.getByRole('spinbutton', {
+            name: new RegExp(`${corners[index]} corner`, 'i'),
+          }),
+        ).toHaveDisplayValue(new RegExp(values[index], 'i'));
+      });
+    });
+  });
 });
 
 describe('inputs for rounding off the corners', () => {
