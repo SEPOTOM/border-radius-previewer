@@ -1,6 +1,11 @@
 import { ReactNode } from 'react';
 
+import { AdvancedBorderRadiusValues } from '@/types';
+
 export interface AdvancedModeControlsProps {
   children: ReactNode;
-  onBorderRadiusChange: (borderRadius: string) => void;
+  borderRadiusValues: AdvancedBorderRadiusValues;
+  onBorderRadiusValuesChange: (
+    borderRadiusValues: AdvancedBorderRadiusValues,
+  ) => void;
 }

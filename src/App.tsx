@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import { AdvancedModeControls, NormalModeControls } from '@/components';
-import { BorderRadiusValues } from '@/types';
-import { borderRadiusObjToStr } from '@/utils';
+import { AdvancedBorderRadiusValues, BorderRadiusValues } from '@/types';
+import { borderRadiusObjToStr, borderRadiusObjToStrAdvanced } from '@/utils';
 
 const App = () => {
   const [borderRadiusValues, setBorderRadiusValues] =
@@ -12,18 +12,32 @@ const App = () => {
       'bottom-right': '0',
       'bottom-left': '0',
     });
-  const [advancedBorderRadius, setAdvancedBorderRadius] =
-    useState('0 0 0 0 / 0 0 0 0');
+  const [advancedBorderRadiusValues, setAdvancedBorderRadiusValues] =
+    useState<AdvancedBorderRadiusValues>({
+      'horz-top-left': '0',
+      'horz-top-right': '0',
+      'horz-bottom-right': '0',
+      'horz-bottom-left': '0',
+      'vert-top-left': '0',
+      'vert-top-right': '0',
+      'vert-bottom-right': '0',
+      'vert-bottom-left': '0',
+    });
   const [isAdvanced, setIsAdvanced] = useState(false);
 
   const borderRadius = borderRadiusObjToStr(borderRadiusValues);
-
-  const handleBorderRadiusChange = (newBorderRadius: string) => {
-    setAdvancedBorderRadius(newBorderRadius);
-  };
+  const advancedBorderRadius = borderRadiusObjToStrAdvanced(
+    advancedBorderRadiusValues,
+  );
 
   const handleBorderRadiusValuesChange = (newValues: BorderRadiusValues) => {
     setBorderRadiusValues(newValues);
+  };
+
+  const handleAdvancedBorderRadiusValuesChange = (
+    newValues: AdvancedBorderRadiusValues,
+  ) => {
+    setAdvancedBorderRadiusValues(newValues);
   };
 
   const handleCopyButtonClick = async () => {
@@ -47,7 +61,10 @@ const App = () => {
       </button>
 
       {isAdvanced ?
-        <AdvancedModeControls onBorderRadiusChange={handleBorderRadiusChange}>
+        <AdvancedModeControls
+          borderRadiusValues={advancedBorderRadiusValues}
+          onBorderRadiusValuesChange={handleAdvancedBorderRadiusValuesChange}
+        >
           <div
             role="presentation"
             aria-label="Preview box"

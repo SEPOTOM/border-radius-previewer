@@ -1,37 +1,17 @@
-import { ChangeEvent, FC, useState } from 'react';
-
-import { AdvancedBorderRadiusValues } from '@/types';
-import { borderRadiusObjToStrAdvanced } from '@/utils';
+import { ChangeEvent, FC } from 'react';
 
 import { AdvancedModeControlsProps } from './types';
 
 const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
   children,
-  onBorderRadiusChange,
+  borderRadiusValues,
+  onBorderRadiusValuesChange,
 }) => {
-  const [borderRadiusValues, setBorderRadiusValues] =
-    useState<AdvancedBorderRadiusValues>({
-      'horz-top-left': '0',
-      'horz-top-right': '0',
-      'horz-bottom-right': '0',
-      'horz-bottom-left': '0',
-      'vert-top-left': '0',
-      'vert-top-right': '0',
-      'vert-bottom-right': '0',
-      'vert-bottom-left': '0',
-    });
-
   const handleBorderRadiusChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newBorderRadiusValues = {
+    onBorderRadiusValuesChange({
       ...borderRadiusValues,
       [e.target.name]: e.target.value,
-    };
-
-    setBorderRadiusValues(newBorderRadiusValues);
-
-    const borderRadius = borderRadiusObjToStrAdvanced(newBorderRadiusValues);
-
-    onBorderRadiusChange(borderRadius);
+    });
   };
 
   return (
