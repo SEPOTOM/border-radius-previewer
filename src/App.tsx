@@ -82,6 +82,10 @@ const App = () => {
         </NormalModeControls>
       }
 
+      <output aria-label="Output" aria-live="polite">
+        0 0 0 0
+      </output>
+
       <Button onClick={() => void handleCopyButtonClick()}>
         Copy to clipboard!
       </Button>
