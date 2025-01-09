@@ -83,7 +83,7 @@ const App = () => {
       }
 
       <output aria-label="Output" aria-live="polite">
-        0 0 0 0
+        {isAdvanced ? advancedBorderRadius : borderRadius}
       </output>
 
       <Button onClick={() => void handleCopyButtonClick()}>
