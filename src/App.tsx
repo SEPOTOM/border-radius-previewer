@@ -29,6 +29,7 @@ const App = () => {
       'vert-bottom-left': '0',
     });
   const [isAdvanced, setIsAdvanced] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const borderRadius = borderRadiusObjToStr(borderRadiusValues);
   const advancedBorderRadius = borderRadiusObjToStrAdvanced(
@@ -51,6 +52,8 @@ const App = () => {
     } else {
       await navigator.clipboard.writeText(borderRadius);
     }
+
+    setShowSuccess(true);
   };
 
   const handleModesSwitch = () => {
@@ -96,6 +99,12 @@ const App = () => {
       <Button onClick={() => void handleCopyButtonClick()}>
         Copy to clipboard!
       </Button>
+
+      {showSuccess && (
+        <p role="status" aria-label="Copied successfully">
+          The value is copied!
+        </p>
+      )}
     </div>
   );
 };
