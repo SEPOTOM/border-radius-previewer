@@ -24,6 +24,12 @@ describe('App', () => {
     ).toBeInTheDocument();
   });
 
+  it('should show the output field', () => {
+    render(<App />);
+
+    expect(screen.getByRole('status', { name: /output/i })).toBeInTheDocument();
+  });
+
   it('should copy the value of the border radius to the clipboard after clicking the copy button', async () => {
     const { user } = renderWithUser(<App />);
     const writeTextSpy = vi.spyOn(navigator.clipboard, 'writeText');
