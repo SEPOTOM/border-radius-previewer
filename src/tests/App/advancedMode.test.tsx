@@ -96,6 +96,14 @@ describe('App in advanced mode', () => {
     expect(writeTextSpy).toHaveBeenCalledTimes(1);
     expect(writeTextSpy).toHaveBeenCalledWith('0 25px 0 0 / 73px 83px 0 16px');
   });
+
+  it('should show the correct default value in the output field', async () => {
+    await renderInAdvancedMode();
+
+    expect(screen.getByRole('status', { name: /output/i })).toHaveTextContent(
+      '0 0 0 0 / 0 0 0 0',
+    );
+  });
 });
 
 describe('inputs for specifying corresponding radii', () => {
