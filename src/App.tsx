@@ -54,6 +54,8 @@ const App = () => {
     }
 
     setShowSuccess(true);
+
+    setTimeout(() => setShowSuccess(false), 3000);
   };
 
   const handleModesSwitch = () => {
