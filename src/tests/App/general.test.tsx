@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 
 import App from '@/App';
 import { renderWithUser } from '@/tests/utils';
@@ -85,5 +85,24 @@ describe('App', () => {
     );
 
     expect(screen.getByRole('status', { name: /copied/i })).toBeInTheDocument();
+  });
+
+  it('should hide the successful copy message with a 3 second delay', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+
+    const { user } = renderWithUser(<App />);
+
+    await user.click(
+      screen.getByRole('button', { name: /copy to clipboard/i }),
+    );
+
+    act(() => {
+      vi.advanceTimersByTime(3000);
+    });
+
+    expect(screen.queryByRole('status', { name: /copied/i })).toBeNull();
+
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
   });
 });
