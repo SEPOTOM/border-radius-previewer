@@ -76,4 +76,14 @@ describe('App', () => {
 
     expect(screen.getByRole('switch', { name: /mode/i })).toBeChecked();
   });
+
+  it('should show the success message after clicking the copy button', async () => {
+    const { user } = renderWithUser(<App />);
+
+    await user.click(
+      screen.getByRole('button', { name: /copy to clipboard/i }),
+    );
+
+    expect(screen.getByRole('status', { name: /copied/i })).toBeInTheDocument();
+  });
 });
