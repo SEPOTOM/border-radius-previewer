@@ -1,6 +1,11 @@
 import { useState } from 'react';
 
-import { AdvancedModeControls, Button, NormalModeControls } from '@/components';
+import {
+  AdvancedModeControls,
+  Button,
+  NormalModeControls,
+  PreviewBox,
+} from '@/components';
 import { AdvancedBorderRadiusValues, BorderRadiusValues } from '@/types';
 import { borderRadiusObjToStr, borderRadiusObjToStrAdvanced } from '@/utils';
 
@@ -67,23 +72,13 @@ const App = () => {
           borderRadiusValues={advancedBorderRadiusValues}
           onBorderRadiusValuesChange={handleAdvancedBorderRadiusValuesChange}
         >
-          <div
-            role="presentation"
-            aria-label="Preview box"
-            className="mx-auto h-72 w-72 bg-main transition-all"
-            style={{ borderRadius: advancedBorderRadius }}
-          />
+          <PreviewBox borderRadius={advancedBorderRadius} />
         </AdvancedModeControls>
       : <NormalModeControls
           borderRadiusValues={borderRadiusValues}
           onBorderRadiusValuesChange={handleBorderRadiusValuesChange}
         >
-          <div
-            role="presentation"
-            aria-label="Preview box"
-            className="mx-auto h-72 w-72 bg-main transition-all"
-            style={{ borderRadius: borderRadius }}
-          />
+          <PreviewBox borderRadius={borderRadius} />
         </NormalModeControls>
       }
 
