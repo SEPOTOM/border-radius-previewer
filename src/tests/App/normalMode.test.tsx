@@ -59,6 +59,22 @@ describe('App in normal mode', () => {
       '0 0 0 0',
     );
   });
+
+  it('should show the current value in the output field', async () => {
+    const { user } = renderWithUser(<App />);
+    const values = ['52', '89', '3', '98'];
+
+    for (let i = 0; i < corners.length; i += 1) {
+      await user.type(
+        screen.getByRole('spinbutton', { name: new RegExp(corners[i], 'i') }),
+        values[i],
+      );
+    }
+
+    expect(screen.getByRole('status', { name: /output/i })).toHaveTextContent(
+      '52px 89px 3px 98px',
+    );
+  });
 });
 
 describe('inputs for rounding off the corners', () => {
