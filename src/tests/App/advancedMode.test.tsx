@@ -104,6 +104,22 @@ describe('App in advanced mode', () => {
       '0 0 0 0 / 0 0 0 0',
     );
   });
+
+  it('should show the current value in the output field', async () => {
+    const { user } = await renderInAdvancedMode();
+    const values = ['983', '25', '51', '9789', '825', '5', '78', '19'];
+
+    for (let i = 0; i < radii.length; i += 1) {
+      await user.type(
+        screen.getByRole('spinbutton', { name: new RegExp(radii[i], 'i') }),
+        values[i],
+      );
+    }
+
+    expect(screen.getByRole('status', { name: /output/i })).toHaveTextContent(
+      '983px 25px 51px 9789px / 825px 5px 78px 19px',
+    );
+  });
 });
 
 describe('inputs for specifying corresponding radii', () => {
