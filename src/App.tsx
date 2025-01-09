@@ -82,9 +82,16 @@ const App = () => {
         </NormalModeControls>
       }
 
-      <output aria-label="Output" aria-live="polite">
-        {isAdvanced ? advancedBorderRadius : borderRadius}
-      </output>
+      <div className="mx-auto mt-5 flex min-w-72 flex-col items-baseline gap-2 text-xl font-bold text-main md:flex-row">
+        <span className="whitespace-nowrap">border-radius:</span>
+        <output
+          aria-label="Output"
+          aria-live="polite"
+          className="w-full rounded-md bg-main p-2 font-black text-secondary"
+        >
+          {isAdvanced ? advancedBorderRadius : borderRadius}
+        </output>
+      </div>
 
       <Button onClick={() => void handleCopyButtonClick()}>
         Copy to clipboard!
