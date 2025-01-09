@@ -51,6 +51,14 @@ describe('App in normal mode', () => {
       });
     });
   });
+
+  it('should show the correct default value in the output field', () => {
+    render(<App />);
+
+    expect(screen.getByRole('status', { name: /output/i })).toHaveTextContent(
+      '0 0 0 0',
+    );
+  });
 });
 
 describe('inputs for rounding off the corners', () => {
