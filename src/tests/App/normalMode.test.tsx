@@ -166,4 +166,16 @@ describe('dropdowns of units of measurement for border radius values', () => {
       ).not.toBeInTheDocument();
     });
   });
+
+  it('should have an initial value of px', () => {
+    render(<App />);
+
+    corners.forEach((corner) => {
+      expect(
+        screen.getByRole('combobox', {
+          name: new RegExp(`${corner} corner unit`, 'i'),
+        }),
+      ).toHaveDisplayValue('px');
+    });
+  });
 });
