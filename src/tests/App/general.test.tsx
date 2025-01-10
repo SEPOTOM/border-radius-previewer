@@ -105,4 +105,21 @@ describe('App', () => {
     vi.runOnlyPendingTimers();
     vi.useRealTimers();
   });
+
+  it('should show the error message if an error occurs when clicking the copy button', async () => {
+    const { user } = renderWithUser(<App />);
+    Object.defineProperty(navigator, 'clipboard', {
+      value: {
+        writeText: vi.fn(() => Promise.reject(new Error('Test error'))),
+      },
+    });
+
+    await user.click(
+      screen.getByRole('button', { name: /copy to clipboard/i }),
+    );
+
+    expect(
+      screen.getByRole('alert', { name: /copy error/i }),
+    ).toBeInTheDocument();
+  });
 });
