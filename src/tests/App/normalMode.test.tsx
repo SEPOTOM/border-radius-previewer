@@ -152,4 +152,18 @@ describe('dropdowns of units of measurement for border radius values', () => {
       ).toBeInTheDocument();
     });
   });
+
+  it('should be hidden in advanced mode', async () => {
+    const { user } = renderWithUser(<App />);
+
+    await user.click(screen.getByRole('switch', { name: /mode/i }));
+
+    corners.forEach((corner) => {
+      expect(
+        screen.queryByRole('combobox', {
+          name: new RegExp(`${corner} corner unit`, 'i'),
+        }),
+      ).not.toBeInTheDocument();
+    });
+  });
 });
