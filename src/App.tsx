@@ -30,6 +30,7 @@ const App = () => {
     });
   const [isAdvanced, setIsAdvanced] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [copyError, setCopyError] = useState<Nullable<Error>>(null);
 
   const borderRadius = borderRadiusObjToStr(borderRadiusValues);
   const advancedBorderRadius = borderRadiusObjToStrAdvanced(
@@ -47,10 +48,16 @@ const App = () => {
   };
 
   const handleCopyButtonClick = async () => {
-    if (isAdvanced) {
-      await navigator.clipboard.writeText(advancedBorderRadius);
-    } else {
-      await navigator.clipboard.writeText(borderRadius);
+    try {
+      if (isAdvanced) {
+        await navigator.clipboard.writeText(advancedBorderRadius);
+      } else {
+        await navigator.clipboard.writeText(borderRadius);
+      }
+    } catch (err) {
+      if (err instanceof Error) {
+        setCopyError(err);
+      }
     }
 
     setShowSuccess(true);
@@ -109,6 +116,12 @@ const App = () => {
           className="absolute left-1/2 top-1/2 w-full max-w-72 -translate-x-1/2 -translate-y-1/2 rounded-md border-2 border-main bg-secondary p-4 text-center text-2xl font-bold text-main outline outline-2 outline-secondary sm:max-w-80 sm:text-3xl"
         >
           The value is copied!
+        </p>
+      )}
+
+      {copyError && (
+        <p role="alert" aria-label="Copy error">
+          An unexpected error occurred! Please try again later.
         </p>
       )}
     </div>
