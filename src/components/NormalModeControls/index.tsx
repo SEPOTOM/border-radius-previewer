@@ -35,22 +35,18 @@ const NormalModeControls: FC<NormalModeControlsProps> = ({
     <>
       <div className="mx-auto flex w-full max-w-[432px] justify-between overflow-hidden sm:justify-center sm:gap-36">
         <BorderRadiusInput
-          inputName="top-left"
-          inputLabel="Top-left corner"
-          value={borderRadiusValues['top-left']}
-          dropdownName="top-left-unit"
-          dropdownLabel="Top-left corner unit"
-          unit={borderRadiusUnits['top-left-unit']}
+          values={borderRadiusValues}
+          corner="top-left"
+          scope="corner"
+          units={borderRadiusUnits}
           onDataChange={handleBorderRadiusChange}
         />
 
         <BorderRadiusInput
-          inputName="top-right"
-          inputLabel="Top-right corner"
-          value={borderRadiusValues['top-right']}
-          dropdownName="top-right-unit"
-          dropdownLabel="Top-right corner unit"
-          unit={borderRadiusUnits['top-right-unit']}
+          values={borderRadiusValues}
+          corner="top-right"
+          scope="corner"
+          units={borderRadiusUnits}
           onDataChange={handleBorderRadiusChange}
         />
       </div>
@@ -59,22 +55,18 @@ const NormalModeControls: FC<NormalModeControlsProps> = ({
 
       <div className="mx-auto flex w-full max-w-[432px] justify-between overflow-hidden sm:justify-center sm:gap-36">
         <BorderRadiusInput
-          inputName="bottom-left"
-          inputLabel="Bottom-left corner"
-          value={borderRadiusValues['bottom-left']}
-          dropdownName="bottom-left-unit"
-          dropdownLabel="Bottom-left corner unit"
-          unit={borderRadiusUnits['bottom-left-unit']}
+          values={borderRadiusValues}
+          corner="bottom-right"
+          scope="corner"
+          units={borderRadiusUnits}
           onDataChange={handleBorderRadiusChange}
         />
 
         <BorderRadiusInput
-          inputName="bottom-right"
-          inputLabel="Bottom-right corner"
-          value={borderRadiusValues['bottom-right']}
-          dropdownName="bottom-right-unit"
-          dropdownLabel="Bottom-right corner unit"
-          unit={borderRadiusUnits['bottom-right-unit']}
+          values={borderRadiusValues}
+          corner="bottom-left"
+          scope="corner"
+          units={borderRadiusUnits}
           onDataChange={handleBorderRadiusChange}
         />
       </div>

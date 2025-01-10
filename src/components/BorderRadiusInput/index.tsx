@@ -5,12 +5,10 @@ import { UnitDropdown } from '@/components';
 import { BorderRadiusInputProps } from './types';
 
 const BorderRadiusInput: FC<BorderRadiusInputProps> = ({
-  value,
-  unit,
-  inputLabel,
-  dropdownLabel,
-  inputName,
-  dropdownName,
+  corner,
+  scope,
+  values,
+  units,
   onDataChange,
 }) => {
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,21 +26,23 @@ const BorderRadiusInput: FC<BorderRadiusInputProps> = ({
     });
   };
 
+  const cornerScope = `${corner} ${scope}`;
+
   return (
     <div className="flex max-w-36 shrink-0 grow-0 basis-1/2 pl-2">
       <input
         type="number"
-        aria-label={inputLabel}
-        value={value}
-        name={inputName}
+        aria-label={cornerScope}
+        value={values[corner]}
+        name={corner}
         onChange={handleValueChange}
         className="outline-focus w-full max-w-full rounded-l-sm rounded-r-none border-r border-dashed border-secondary bg-main p-1 text-xl tracking-wider text-secondary"
       />
       <UnitDropdown
-        aria-label={dropdownLabel}
-        name={dropdownName}
+        aria-label={`${cornerScope} unit`}
+        name={`${corner}-unit`}
         onChange={handleUnitChange}
-        value={unit}
+        value={units[`${corner}-unit`]}
         className="rounded-l-none rounded-r-sm border-l border-dashed border-secondary bg-main p-1 text-xl tracking-wider text-secondary"
       />
     </div>
