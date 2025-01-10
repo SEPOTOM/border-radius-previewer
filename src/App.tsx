@@ -103,7 +103,11 @@ const App = () => {
       </Button>
 
       {showSuccess && (
-        <p role="status" aria-label="Copied successfully">
+        <p
+          role="status"
+          aria-label="Copied successfully"
+          className="absolute left-1/2 top-1/2 w-full max-w-72 -translate-x-1/2 -translate-y-1/2 rounded-md border-2 border-main bg-secondary p-4 text-center text-2xl font-bold text-main outline outline-2 outline-secondary sm:max-w-80 sm:text-3xl"
+        >
           The value is copied!
         </p>
       )}
