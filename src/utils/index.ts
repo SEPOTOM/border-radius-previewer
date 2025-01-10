@@ -1,6 +1,11 @@
+import { BORDER_RADIUS_UNITS } from '@/utils/consts';
 import {
   borderRadiusObjToStr,
   borderRadiusObjToStrAdvanced,
 } from '@/utils/converters';
 
-export { borderRadiusObjToStr, borderRadiusObjToStrAdvanced };
+export {
+  BORDER_RADIUS_UNITS,
+  borderRadiusObjToStr,
+  borderRadiusObjToStrAdvanced,
+};
