@@ -7,7 +7,11 @@ import {
   Popup,
   PreviewBox,
 } from '@/components';
-import { AdvancedBorderRadiusValues, BorderRadiusValues } from '@/types';
+import {
+  AdvancedBorderRadiusValues,
+  BorderRadiusUnits,
+  BorderRadiusValues,
+} from '@/types';
 import { borderRadiusObjToStr, borderRadiusObjToStrAdvanced } from '@/utils';
 
 const App = () => {
@@ -18,6 +22,14 @@ const App = () => {
       'bottom-right': '0',
       'bottom-left': '0',
     });
+  const [borderRadiusUnits, setBorderRadiusUnits] = useState<BorderRadiusUnits>(
+    {
+      'top-left-unit': 'px',
+      'top-right-unit': 'px',
+      'bottom-right-unit': 'px',
+      'bottom-left-unit': 'px',
+    },
+  );
   const [advancedBorderRadiusValues, setAdvancedBorderRadiusValues] =
     useState<AdvancedBorderRadiusValues>({
       'horz-top-left': '0',
@@ -33,13 +45,20 @@ const App = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [copyError, setCopyError] = useState<Nullable<Error>>(null);
 
-  const borderRadius = borderRadiusObjToStr(borderRadiusValues);
+  const borderRadius = borderRadiusObjToStr(
+    borderRadiusValues,
+    borderRadiusUnits,
+  );
   const advancedBorderRadius = borderRadiusObjToStrAdvanced(
     advancedBorderRadiusValues,
   );
 
   const handleBorderRadiusValuesChange = (newValues: BorderRadiusValues) => {
     setBorderRadiusValues(newValues);
+  };
+
+  const handleBorderRadiusUnitsChange = (newUnits: BorderRadiusUnits) => {
+    setBorderRadiusUnits(newUnits);
   };
 
   const handleAdvancedBorderRadiusValuesChange = (
@@ -92,7 +111,9 @@ const App = () => {
         </AdvancedModeControls>
       : <NormalModeControls
           borderRadiusValues={borderRadiusValues}
+          borderRadiusUnits={borderRadiusUnits}
           onBorderRadiusValuesChange={handleBorderRadiusValuesChange}
+          onBorderRadiusUnitsChange={handleBorderRadiusUnitsChange}
         >
           <PreviewBox borderRadius={borderRadius} />
         </NormalModeControls>

@@ -1,17 +1,23 @@
-import { AdvancedBorderRadiusValues, BorderRadiusValues } from '@/types';
+import {
+  AdvancedBorderRadiusValues,
+  BorderRadiusUnits,
+  BorderRadiusValues,
+} from '@/types';
+import { ORDERED_CORNERS } from '@/utils';
 
-export const borderRadiusObjToStr = (obj: BorderRadiusValues): string =>
-  [obj['top-left'], obj['top-right'], obj['bottom-right'], obj['bottom-left']]
-    .map((value) => {
-      const parsedValue = parseFloat(value);
+export const borderRadiusObjToStr = (
+  values: BorderRadiusValues,
+  units: BorderRadiusUnits,
+): string =>
+  ORDERED_CORNERS.map((corner) => {
+    const parsedValue = parseFloat(values[corner]);
 
-      if (isNaN(parsedValue) || parsedValue === 0) {
-        return '0';
-      } else {
-        return `${parsedValue}px`;
-      }
-    })
-    .join(' ');
+    if (isNaN(parsedValue) || parsedValue === 0) {
+      return '0';
+    } else {
+      return `${parsedValue}${units[`${corner}-unit`]}`;
+    }
+  }).join(' ');
 
 export const borderRadiusObjToStrAdvanced = (
   obj: AdvancedBorderRadiusValues,

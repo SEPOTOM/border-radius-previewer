@@ -7,11 +7,20 @@ import { NormalModeControlsProps } from './types';
 const NormalModeControls: FC<NormalModeControlsProps> = ({
   children,
   borderRadiusValues,
+  borderRadiusUnits,
   onBorderRadiusValuesChange,
+  onBorderRadiusUnitsChange,
 }) => {
   const handleBorderRadiusChange = (e: ChangeEvent<HTMLInputElement>) => {
     onBorderRadiusValuesChange({
       ...borderRadiusValues,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleBorderRadiusUnitChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    onBorderRadiusUnitsChange({
+      ...borderRadiusUnits,
       [e.target.name]: e.target.value,
     });
   };
@@ -63,10 +72,30 @@ const NormalModeControls: FC<NormalModeControlsProps> = ({
           />
         </div>
       </div>
-      <UnitDropdown aria-label="Top-left corner unit" />
-      <UnitDropdown aria-label="Top-right corner unit" />
-      <UnitDropdown aria-label="Bottom-left corner unit" />
-      <UnitDropdown aria-label="Bottom-right corner unit" />
+      <UnitDropdown
+        aria-label="Top-left corner unit"
+        name="top-left-unit"
+        onChange={handleBorderRadiusUnitChange}
+        value={borderRadiusUnits['top-left-unit']}
+      />
+      <UnitDropdown
+        aria-label="Top-right corner unit"
+        name="top-right-unit"
+        onChange={handleBorderRadiusUnitChange}
+        value={borderRadiusUnits['top-right-unit']}
+      />
+      <UnitDropdown
+        aria-label="Bottom-left corner unit"
+        name="bottom-left-unit"
+        onChange={handleBorderRadiusUnitChange}
+        value={borderRadiusUnits['bottom-left-unit']}
+      />
+      <UnitDropdown
+        aria-label="Bottom-right corner unit"
+        name="bottom-right-unit"
+        onChange={handleBorderRadiusUnitChange}
+        value={borderRadiusUnits['bottom-right-unit']}
+      />
     </>
   );
 };
