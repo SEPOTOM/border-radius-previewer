@@ -4,6 +4,7 @@ import {
   AdvancedModeControls,
   Button,
   NormalModeControls,
+  Popup,
   PreviewBox,
 } from '@/components';
 import { AdvancedBorderRadiusValues, BorderRadiusValues } from '@/types';
@@ -49,7 +50,6 @@ const App = () => {
 
   const handleCopyButtonClick = async () => {
     try {
-      throw new Error();
       if (isAdvanced) {
         await navigator.clipboard.writeText(advancedBorderRadius);
       } else {
@@ -114,23 +114,13 @@ const App = () => {
       </Button>
 
       {showSuccess && (
-        <p
-          role="status"
-          aria-label="Copied successfully"
-          className="absolute left-1/2 top-1/2 w-full max-w-72 -translate-x-1/2 -translate-y-1/2 rounded-md border-2 border-main bg-secondary p-4 text-center text-2xl font-bold text-main outline outline-2 outline-secondary sm:max-w-80 sm:text-3xl"
-        >
-          The value is copied!
-        </p>
+        <Popup aria-label="Copied successfully">The value is copied!</Popup>
       )}
 
       {copyError && (
-        <p
-          role="alert"
-          aria-label="Copy error"
-          className="absolute left-1/2 top-1/2 w-full max-w-72 -translate-x-1/2 -translate-y-1/2 rounded-md border-2 border-error bg-secondary p-4 text-center text-2xl font-bold text-error outline outline-2 outline-secondary sm:max-w-80 sm:text-3xl"
-        >
+        <Popup aria-label="Copy error" isError>
           An unexpected error occurred! Please try again later.
-        </p>
+        </Popup>
       )}
     </div>
   );
