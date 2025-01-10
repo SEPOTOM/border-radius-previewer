@@ -146,4 +146,19 @@ describe('App', () => {
     vi.runOnlyPendingTimers();
     vi.useRealTimers();
   });
+
+  it("shouldn't show the successful copy message when a copy error occurs", async () => {
+    const { user } = renderWithUser(<App />);
+    Object.defineProperty(navigator, 'clipboard', {
+      value: {
+        writeText: vi.fn(() => Promise.reject(new Error('Test error'))),
+      },
+    });
+
+    await user.click(
+      screen.getByRole('button', { name: /copy to clipboard/i }),
+    );
+
+    expect(screen.queryByRole('status', { name: /copied/i })).toBeNull();
+  });
 });
