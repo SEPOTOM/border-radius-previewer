@@ -139,3 +139,17 @@ describe('inputs for rounding off the corners', () => {
     });
   });
 });
+
+describe('dropdowns of units of measurement for border radius values', () => {
+  it('should be displayed in normal mode', () => {
+    render(<App />);
+
+    corners.forEach((corner) => {
+      expect(
+        screen.getByRole('combobox', {
+          name: new RegExp(`${corner} corner unit`, 'i'),
+        }),
+      ).toBeInTheDocument();
+    });
+  });
+});
