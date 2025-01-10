@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import App from '@/App';
 import { renderWithUser } from '@/tests/utils';
+import { BORDER_RADIUS_UNITS } from '@/utils';
 
 const corners = ['top-left', 'top-right', 'bottom-right', 'bottom-left'];
 
@@ -176,6 +177,34 @@ describe('dropdowns of units of measurement for border radius values', () => {
           name: new RegExp(`${corner} corner unit`, 'i'),
         }),
       ).toHaveDisplayValue('px');
+    });
+  });
+
+  describe('should change the corresponding unit of measurement', () => {
+    corners.forEach((corner, index) => {
+      it(`${corner} unit`, async () => {
+        const { user } = renderWithUser(<App />);
+        await user.type(
+          screen.getByRole('spinbutton', { name: new RegExp(corner, 'i') }),
+          '1',
+        );
+        const unitIndex = index % BORDER_RADIUS_UNITS.length;
+
+        await user.selectOptions(
+          screen.getByRole('combobox', {
+            name: new RegExp(`${corner} corner unit`, 'i'),
+          }),
+          BORDER_RADIUS_UNITS[unitIndex],
+        );
+
+        const previewBox = screen.getByLabelText(/preview box/i);
+        const previewBoxStyle = getComputedStyle(previewBox);
+        const borderRadiusValues = previewBoxStyle.borderRadius.split(' ');
+
+        expect(borderRadiusValues[index]).toBe(
+          `1${BORDER_RADIUS_UNITS[unitIndex]}`,
+        );
+      });
     });
   });
 });
