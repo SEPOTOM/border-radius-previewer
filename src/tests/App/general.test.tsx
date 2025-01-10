@@ -122,4 +122,28 @@ describe('App', () => {
       screen.getByRole('alert', { name: /copy error/i }),
     ).toBeInTheDocument();
   });
+
+  it('should hide the copy error message with a 3 second delay', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+
+    const { user } = renderWithUser(<App />);
+    Object.defineProperty(navigator, 'clipboard', {
+      value: {
+        writeText: vi.fn(() => Promise.reject(new Error('Test error'))),
+      },
+    });
+
+    await user.click(
+      screen.getByRole('button', { name: /copy to clipboard/i }),
+    );
+
+    act(() => {
+      vi.advanceTimersByTime(3000);
+    });
+
+    expect(screen.queryByRole('alert', { name: /copy error/i })).toBeNull();
+
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
+  });
 });
