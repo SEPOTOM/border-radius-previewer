@@ -49,6 +49,7 @@ const App = () => {
 
   const handleCopyButtonClick = async () => {
     try {
+      throw new Error();
       if (isAdvanced) {
         await navigator.clipboard.writeText(advancedBorderRadius);
       } else {
@@ -123,7 +124,11 @@ const App = () => {
       )}
 
       {copyError && (
-        <p role="alert" aria-label="Copy error">
+        <p
+          role="alert"
+          aria-label="Copy error"
+          className="absolute left-1/2 top-1/2 w-full max-w-72 -translate-x-1/2 -translate-y-1/2 rounded-md border-2 border-error bg-secondary p-4 text-center text-2xl font-bold text-error outline outline-2 outline-secondary sm:max-w-80 sm:text-3xl"
+        >
           An unexpected error occurred! Please try again later.
         </p>
       )}
