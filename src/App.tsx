@@ -54,13 +54,13 @@ const App = () => {
       } else {
         await navigator.clipboard.writeText(borderRadius);
       }
+
+      setShowSuccess(true);
     } catch (err) {
       if (err instanceof Error) {
         setCopyError(err);
       }
     }
-
-    setShowSuccess(true);
 
     setTimeout(() => {
       setShowSuccess(false);
