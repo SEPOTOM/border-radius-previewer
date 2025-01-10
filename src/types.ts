@@ -19,3 +19,10 @@ export interface AdvancedBorderRadiusValues {
 }
 
 export type BorderRadiusUnit = (typeof BORDER_RADIUS_UNITS)[number];
+
+export interface BorderRadiusUnits {
+  'top-left-unit': BorderRadiusUnit;
+  'top-right-unit': BorderRadiusUnit;
+  'bottom-left-unit': BorderRadiusUnit;
+  'bottom-right-unit': BorderRadiusUnit;
+}
