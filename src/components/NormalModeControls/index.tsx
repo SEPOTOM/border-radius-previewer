@@ -61,6 +61,10 @@ const NormalModeControls: FC<NormalModeControlsProps> = ({
           />
         </div>
       </div>
+      <select aria-label="Top-left corner unit" />
+      <select aria-label="Top-right corner unit" />
+      <select aria-label="Bottom-left corner unit" />
+      <select aria-label="Bottom-right corner unit" />
     </>
   );
 };
