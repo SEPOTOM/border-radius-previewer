@@ -1,4 +1,4 @@
-import { BORDER_RADIUS_UNITS } from '@/utils/consts';
+import { BORDER_RADIUS_UNITS, ORDERED_CORNERS } from '@/utils/consts';
 import {
   borderRadiusObjToStr,
   borderRadiusObjToStrAdvanced,
@@ -6,6 +6,7 @@ import {
 
 export {
   BORDER_RADIUS_UNITS,
+  ORDERED_CORNERS,
   borderRadiusObjToStr,
   borderRadiusObjToStrAdvanced,
 };

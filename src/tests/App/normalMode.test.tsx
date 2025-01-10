@@ -2,19 +2,17 @@ import { render, screen } from '@testing-library/react';
 
 import App from '@/App';
 import { renderWithUser } from '@/tests/utils';
-import { BORDER_RADIUS_UNITS } from '@/utils';
-
-const corners = ['top-left', 'top-right', 'bottom-right', 'bottom-left'];
+import { BORDER_RADIUS_UNITS, ORDERED_CORNERS } from '@/utils';
 
 describe('App in normal mode', () => {
   it('should keep the rounding after switching to advanced mode', async () => {
     const values = ['31', '52', '89', '90'];
     const { user } = renderWithUser(<App />);
 
-    for (let i = 0; i < corners.length; i += 1) {
+    for (let i = 0; i < ORDERED_CORNERS.length; i += 1) {
       await user.type(
         screen.getByRole('spinbutton', {
-          name: new RegExp(`${corners[i]} corner`, 'i'),
+          name: new RegExp(`${ORDERED_CORNERS[i]} corner`, 'i'),
         }),
         values[i],
       );
@@ -31,7 +29,7 @@ describe('App in normal mode', () => {
   describe('should keep the values of the corner inputs after switching to advanced mode', () => {
     const values = ['60', '152', '67', '83'];
 
-    corners.forEach((corner, index) => {
+    ORDERED_CORNERS.forEach((corner, index) => {
       it(corner, async () => {
         const { user } = renderWithUser(<App />);
         await user.type(
@@ -46,7 +44,7 @@ describe('App in normal mode', () => {
 
         expect(
           screen.getByRole('spinbutton', {
-            name: new RegExp(`${corners[index]} corner`, 'i'),
+            name: new RegExp(`${ORDERED_CORNERS[index]} corner`, 'i'),
           }),
         ).toHaveDisplayValue(new RegExp(values[index], 'i'));
       });
@@ -65,9 +63,11 @@ describe('App in normal mode', () => {
     const { user } = renderWithUser(<App />);
     const values = ['52', '89', '3', '98'];
 
-    for (let i = 0; i < corners.length; i += 1) {
+    for (let i = 0; i < ORDERED_CORNERS.length; i += 1) {
       await user.type(
-        screen.getByRole('spinbutton', { name: new RegExp(corners[i], 'i') }),
+        screen.getByRole('spinbutton', {
+          name: new RegExp(ORDERED_CORNERS[i], 'i'),
+        }),
         values[i],
       );
     }
@@ -82,7 +82,7 @@ describe('inputs for rounding off the corners', () => {
   it('should be displayed in normal mode', () => {
     render(<App />);
 
-    corners.forEach((corner) => {
+    ORDERED_CORNERS.forEach((corner) => {
       expect(
         screen.getByRole('spinbutton', {
           name: new RegExp(`${corner} corner`, 'i'),
@@ -96,7 +96,7 @@ describe('inputs for rounding off the corners', () => {
 
     await user.click(screen.getByRole('switch', { name: /mode/i }));
 
-    corners.forEach((corner) => {
+    ORDERED_CORNERS.forEach((corner) => {
       expect(
         screen.queryByRole('spinbutton', {
           name: new RegExp(`${corner} corner`, 'i'),
@@ -108,7 +108,7 @@ describe('inputs for rounding off the corners', () => {
   it('should have an initial value of 0', () => {
     render(<App />);
 
-    corners.forEach((corner) => {
+    ORDERED_CORNERS.forEach((corner) => {
       expect(
         screen.getByRole('spinbutton', {
           name: new RegExp(`${corner} corner`, 'i'),
@@ -120,7 +120,7 @@ describe('inputs for rounding off the corners', () => {
   describe('should round off the appropriate corner', () => {
     const values = ['25', '33', '12', '100'];
 
-    corners.forEach((corner, index) => {
+    ORDERED_CORNERS.forEach((corner, index) => {
       it(corner, async () => {
         const { user } = renderWithUser(<App />);
 
@@ -145,7 +145,7 @@ describe('dropdowns of units of measurement for border radius values', () => {
   it('should be displayed in normal mode', () => {
     render(<App />);
 
-    corners.forEach((corner) => {
+    ORDERED_CORNERS.forEach((corner) => {
       expect(
         screen.getByRole('combobox', {
           name: new RegExp(`${corner} corner unit`, 'i'),
@@ -159,7 +159,7 @@ describe('dropdowns of units of measurement for border radius values', () => {
 
     await user.click(screen.getByRole('switch', { name: /mode/i }));
 
-    corners.forEach((corner) => {
+    ORDERED_CORNERS.forEach((corner) => {
       expect(
         screen.queryByRole('combobox', {
           name: new RegExp(`${corner} corner unit`, 'i'),
@@ -171,7 +171,7 @@ describe('dropdowns of units of measurement for border radius values', () => {
   it('should have an initial value of px', () => {
     render(<App />);
 
-    corners.forEach((corner) => {
+    ORDERED_CORNERS.forEach((corner) => {
       expect(
         screen.getByRole('combobox', {
           name: new RegExp(`${corner} corner unit`, 'i'),
@@ -181,7 +181,7 @@ describe('dropdowns of units of measurement for border radius values', () => {
   });
 
   describe('should change the corresponding unit of measurement', () => {
-    corners.forEach((corner, index) => {
+    ORDERED_CORNERS.forEach((corner, index) => {
       it(`${corner} unit`, async () => {
         const { user } = renderWithUser(<App />);
         await user.type(
