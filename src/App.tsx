@@ -62,7 +62,10 @@ const App = () => {
 
     setShowSuccess(true);
 
-    setTimeout(() => setShowSuccess(false), 3000);
+    setTimeout(() => {
+      setShowSuccess(false);
+      setCopyError(null);
+    }, 3000);
   };
 
   const handleModesSwitch = () => {
