@@ -16,6 +16,8 @@ body {
 }
 
 #root {
+  display: flex;
+  align-items: center;
   min-height: 100%;
 
   @apply bg-secondary;

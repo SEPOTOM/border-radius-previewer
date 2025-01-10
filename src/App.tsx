@@ -93,7 +93,7 @@ const App = () => {
   };
 
   return (
-    <div className="mx-auto flex h-full max-w-5xl flex-col justify-center gap-y-3 p-3">
+    <div className="mx-auto flex h-full max-w-5xl basis-full flex-col justify-center gap-y-3 p-3">
       <Button
         role="switch"
         aria-checked={isAdvanced}
