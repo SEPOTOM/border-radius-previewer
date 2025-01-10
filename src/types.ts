@@ -1,3 +1,5 @@
+import { BORDER_RADIUS_UNITS } from '@/utils';
+
 export interface BorderRadiusValues {
   'top-left': string;
   'top-right': string;
@@ -15,3 +17,5 @@ export interface AdvancedBorderRadiusValues {
   'vert-bottom-left': string;
   'vert-bottom-right': string;
 }
+
+export type BorderRadiusUnit = (typeof BORDER_RADIUS_UNITS)[number];
