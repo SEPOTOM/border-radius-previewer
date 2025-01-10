@@ -1,5 +1,7 @@
 import { ChangeEvent, FC } from 'react';
 
+import { UnitDropdown } from '@/components';
+
 import { NormalModeControlsProps } from './types';
 
 const NormalModeControls: FC<NormalModeControlsProps> = ({
@@ -61,10 +63,10 @@ const NormalModeControls: FC<NormalModeControlsProps> = ({
           />
         </div>
       </div>
-      <select aria-label="Top-left corner unit" />
-      <select aria-label="Top-right corner unit" />
-      <select aria-label="Bottom-left corner unit" />
-      <select aria-label="Bottom-right corner unit" />
+      <UnitDropdown aria-label="Top-left corner unit" />
+      <UnitDropdown aria-label="Top-right corner unit" />
+      <UnitDropdown aria-label="Bottom-left corner unit" />
+      <UnitDropdown aria-label="Bottom-right corner unit" />
     </>
   );
 };
