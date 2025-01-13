@@ -2,7 +2,10 @@ import { render, screen } from '@testing-library/react';
 
 import App from '@/App';
 import { renderWithUser } from '@/tests/utils';
+import { BorderRadiusUnit } from '@/types';
 import { BORDER_RADIUS_UNITS, ORDERED_RADII } from '@/utils';
+
+const defaultMeasurementUnit: BorderRadiusUnit = '%';
 
 describe('App in advanced mode', () => {
   it('should show the preview box', async () => {
@@ -21,6 +24,11 @@ describe('App in advanced mode', () => {
 
   it('should keep the rounding after switching to normal mode', async () => {
     const values = ['3', '73', '71', '54', '180', '768', '16', '90'];
+    const rawExpectedResult = values.map(
+      (value) => `${value}${defaultMeasurementUnit}`,
+    );
+    rawExpectedResult.splice(4, 0, '/');
+    const expectedResult = rawExpectedResult.join(' ');
     const { user } = await renderInAdvancedMode();
 
     for (let i = 0; i < ORDERED_RADII.length; i += 1) {
@@ -37,9 +45,7 @@ describe('App in advanced mode', () => {
 
     const previewBox = screen.getByLabelText(/preview box/i);
     const previewBoxStyle = getComputedStyle(previewBox);
-    expect(previewBoxStyle.borderRadius).toBe(
-      '3px 73px 71px 54px / 180px 768px 16px 90px',
-    );
+    expect(previewBoxStyle.borderRadius).toBe(expectedResult);
   });
 
   describe('should keep the values of the radii inputs after switching to normal mode', () => {
@@ -69,6 +75,11 @@ describe('App in advanced mode', () => {
 
   it('should copy the value of the border radius to the clipboard after clicking the copy button', async () => {
     const values = ['0', '25', '0', '0', '73', '83', '0', '16'];
+    const rawExpectedResult = values.map((value) =>
+      value === '0' ? value : `${value}${defaultMeasurementUnit}`,
+    );
+    rawExpectedResult.splice(4, 0, '/');
+    const expectedResult = rawExpectedResult.join(' ');
     const { user } = await renderInAdvancedMode();
     const writeTextSpy = vi.spyOn(navigator.clipboard, 'writeText');
 
@@ -86,7 +97,7 @@ describe('App in advanced mode', () => {
     );
 
     expect(writeTextSpy).toHaveBeenCalledTimes(1);
-    expect(writeTextSpy).toHaveBeenCalledWith('0 25px 0 0 / 73px 83px 0 16px');
+    expect(writeTextSpy).toHaveBeenCalledWith(expectedResult);
   });
 
   it('should show the correct default value in the output field', async () => {
@@ -100,6 +111,11 @@ describe('App in advanced mode', () => {
   it('should show the current value in the output field', async () => {
     const { user } = await renderInAdvancedMode();
     const values = ['983', '25', '51', '9789', '825', '5', '78', '19'];
+    const rawExpectedResult = values.map(
+      (value) => `${value}${defaultMeasurementUnit}`,
+    );
+    rawExpectedResult.splice(4, 0, '/');
+    const expectedResult = rawExpectedResult.join(' ');
 
     for (let i = 0; i < ORDERED_RADII.length; i += 1) {
       await user.type(
@@ -111,7 +127,7 @@ describe('App in advanced mode', () => {
     }
 
     expect(screen.getByRole('status', { name: /output/i })).toHaveTextContent(
-      '983px 25px 51px 9789px / 825px 5px 78px 19px',
+      expectedResult,
     );
   });
 });
