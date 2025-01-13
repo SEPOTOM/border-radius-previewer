@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import App from '@/App';
 import { renderWithUser } from '@/tests/utils';
-import { ORDERED_RADII } from '@/utils';
+import { BORDER_RADIUS_UNITS, ORDERED_RADII } from '@/utils';
 
 describe('App in advanced mode', () => {
   it('should show the preview box', async () => {
@@ -215,6 +215,36 @@ describe('dropdowns of units of measurement for border radius values', () => {
           name: new RegExp(`${radius} radius unit`, 'i'),
         }),
       ).toHaveDisplayValue('%');
+    });
+  });
+
+  describe('should change the corresponding unit of measurement', () => {
+    ORDERED_RADII.forEach((radius, index) => {
+      it(`${radius} unit`, async () => {
+        const { user } = await renderInAdvancedMode();
+        await user.type(
+          screen.getByRole('spinbutton', { name: new RegExp(radius, 'i') }),
+          '1',
+        );
+        const unitIndex = index % BORDER_RADIUS_UNITS.length;
+
+        await user.selectOptions(
+          screen.getByRole('combobox', {
+            name: new RegExp(`${radius} radius unit`, 'i'),
+          }),
+          BORDER_RADIUS_UNITS[unitIndex],
+        );
+
+        const previewBox = screen.getByLabelText(/preview box/i);
+        const previewBoxStyle = getComputedStyle(previewBox);
+        const borderRadiusValues = previewBoxStyle.borderRadius
+          .split(' ')
+          .filter((value) => value !== '/');
+
+        expect(borderRadiusValues[index]).toBe(
+          `1${BORDER_RADIUS_UNITS[unitIndex]}`,
+        );
+      });
     });
   });
 });
