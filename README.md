@@ -1,50 +1,25 @@
-# React + TypeScript + Vite
+# Border-radius Previewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The app demonstrates how the `border-radius` property affects an element. It has two modes: with 4 and 8 values.
 
-Currently, two official plugins are available:
+Inspired by [Border-radius Previewer](https://github.com/florinpop17/app-ideas/blob/master/Projects/1-Beginner/Border-Radius-Previewer.md)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## User Stories
 
-## Expanding the ESLint configuration
+- [x] User can see a box which has a `border-radius` property applied to it
+- [x] User can change the 4 `border-radius` values that are applied to the box (top-left, top-right, bottom-left, bottom-right)
+- [x] User can copy the resulting CSS to the clipboard
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Bonus features
 
-- Configure the top-level `parserOptions` property like this:
+- [x] User can change all 8 possible values of the `border-radius` in order to create a complex shape
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+## Additional features
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
-```
+- [x] User can switch between modes with 4 and 8 values
+- [x] The values from each mode are preserved when switching
+- [x] User can see the resulting CSS in the output field
+- [x] User can change the measurement units of each value using corresponding dropdowns
+- [x] A success popup appears after clicking the copy button
+- [x] An error popup appears if there is a copy error
+- [x] Both popups disappear after a 3-second delay
