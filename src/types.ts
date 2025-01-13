@@ -1,23 +1,15 @@
 import { BORDER_RADIUS_UNITS, ORDERED_CORNERS, ORDERED_RADII } from '@/utils';
 
+export type BorderRadiusUnit = (typeof BORDER_RADIUS_UNITS)[number];
+
+export type BorderRadiusValue = [string, BorderRadiusUnit];
+
 export type BorderRadiusValues = Record<
   (typeof ORDERED_CORNERS)[number],
-  string
+  BorderRadiusValue
 >;
 
 export type AdvancedBorderRadiusValues = Record<
   (typeof ORDERED_RADII)[number],
-  string
->;
-
-export type BorderRadiusUnit = (typeof BORDER_RADIUS_UNITS)[number];
-
-export type BorderRadiusUnits = Record<
-  `${(typeof ORDERED_CORNERS)[number]}-unit`,
-  BorderRadiusUnit
->;
-
-export type AdvancedBorderRadiusUnits = Record<
-  `${(typeof ORDERED_RADII)[number]}-unit`,
-  BorderRadiusUnit
+  BorderRadiusValue
 >;

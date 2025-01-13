@@ -7,83 +7,45 @@ import {
   Popup,
   PreviewBox,
 } from '@/components';
-import {
-  AdvancedBorderRadiusUnits,
-  AdvancedBorderRadiusValues,
-  BorderRadiusUnits,
-  BorderRadiusValues,
-} from '@/types';
+import { AdvancedBorderRadiusValues, BorderRadiusValues } from '@/types';
 import { borderRadiusObjToStr, borderRadiusObjToStrAdvanced } from '@/utils';
 
 const App = () => {
   const [borderRadiusValues, setBorderRadiusValues] =
     useState<BorderRadiusValues>({
-      'top-left': '0',
-      'top-right': '0',
-      'bottom-right': '0',
-      'bottom-left': '0',
+      'top-left': ['0', 'px'],
+      'top-right': ['0', 'px'],
+      'bottom-right': ['0', 'px'],
+      'bottom-left': ['0', 'px'],
     });
-  const [borderRadiusUnits, setBorderRadiusUnits] = useState<BorderRadiusUnits>(
-    {
-      'top-left-unit': 'px',
-      'top-right-unit': 'px',
-      'bottom-right-unit': 'px',
-      'bottom-left-unit': 'px',
-    },
-  );
   const [advancedBorderRadiusValues, setAdvancedBorderRadiusValues] =
     useState<AdvancedBorderRadiusValues>({
-      'horizontal top-left': '0',
-      'horizontal top-right': '0',
-      'horizontal bottom-right': '0',
-      'horizontal bottom-left': '0',
-      'vertical top-left': '0',
-      'vertical top-right': '0',
-      'vertical bottom-right': '0',
-      'vertical bottom-left': '0',
-    });
-  const [advancedBorderRadiusUnits, setAdvancedBorderRadiusUnits] =
-    useState<AdvancedBorderRadiusUnits>({
-      'horizontal top-left-unit': '%',
-      'horizontal top-right-unit': '%',
-      'horizontal bottom-right-unit': '%',
-      'horizontal bottom-left-unit': '%',
-      'vertical top-left-unit': '%',
-      'vertical top-right-unit': '%',
-      'vertical bottom-right-unit': '%',
-      'vertical bottom-left-unit': '%',
+      'horizontal top-left': ['0', '%'],
+      'horizontal top-right': ['0', '%'],
+      'horizontal bottom-right': ['0', '%'],
+      'horizontal bottom-left': ['0', '%'],
+      'vertical top-left': ['0', '%'],
+      'vertical top-right': ['0', '%'],
+      'vertical bottom-right': ['0', '%'],
+      'vertical bottom-left': ['0', '%'],
     });
   const [isAdvanced, setIsAdvanced] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [copyError, setCopyError] = useState<Nullable<Error>>(null);
 
-  const borderRadius = borderRadiusObjToStr(
-    borderRadiusValues,
-    borderRadiusUnits,
-  );
+  const borderRadius = borderRadiusObjToStr(borderRadiusValues);
   const advancedBorderRadius = borderRadiusObjToStrAdvanced(
     advancedBorderRadiusValues,
-    advancedBorderRadiusUnits,
   );
 
   const handleBorderRadiusValuesChange = (newValues: BorderRadiusValues) => {
     setBorderRadiusValues(newValues);
   };
 
-  const handleBorderRadiusUnitsChange = (newUnits: BorderRadiusUnits) => {
-    setBorderRadiusUnits(newUnits);
-  };
-
   const handleAdvancedBorderRadiusValuesChange = (
     newValues: AdvancedBorderRadiusValues,
   ) => {
     setAdvancedBorderRadiusValues(newValues);
-  };
-
-  const handleAdvancedBorderRadiusUnitsChange = (
-    newUnits: AdvancedBorderRadiusUnits,
-  ) => {
-    setAdvancedBorderRadiusUnits(newUnits);
   };
 
   const handleCopyButtonClick = async () => {
@@ -124,17 +86,13 @@ const App = () => {
       {isAdvanced ?
         <AdvancedModeControls
           borderRadiusValues={advancedBorderRadiusValues}
-          borderRadiusUnits={advancedBorderRadiusUnits}
           onBorderRadiusValuesChange={handleAdvancedBorderRadiusValuesChange}
-          onBorderRadiusUnitsChange={handleAdvancedBorderRadiusUnitsChange}
         >
           <PreviewBox borderRadius={advancedBorderRadius} />
         </AdvancedModeControls>
       : <NormalModeControls
           borderRadiusValues={borderRadiusValues}
-          borderRadiusUnits={borderRadiusUnits}
           onBorderRadiusValuesChange={handleBorderRadiusValuesChange}
-          onBorderRadiusUnitsChange={handleBorderRadiusUnitsChange}
         >
           <PreviewBox borderRadius={borderRadius} />
         </NormalModeControls>

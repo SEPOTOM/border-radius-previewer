@@ -1,34 +1,20 @@
 import { FC } from 'react';
 
 import { BorderRadiusInput } from '@/components';
-import { BorderRadiusUnits, BorderRadiusValues } from '@/types';
+import { BorderRadiusValues } from '@/types';
 
 import { NormalModeControlsProps } from './types';
 
 const NormalModeControls: FC<NormalModeControlsProps> = ({
   children,
   borderRadiusValues,
-  borderRadiusUnits,
   onBorderRadiusValuesChange,
-  onBorderRadiusUnitsChange,
 }) => {
-  const handleBorderRadiusChange = (
-    newValue: Nullable<Partial<BorderRadiusValues>>,
-    newUnit: Nullable<Partial<BorderRadiusUnits>>,
-  ) => {
-    if (newValue) {
-      onBorderRadiusValuesChange({
-        ...borderRadiusValues,
-        ...newValue,
-      });
-    }
-
-    if (newUnit) {
-      onBorderRadiusUnitsChange({
-        ...borderRadiusUnits,
-        ...newUnit,
-      });
-    }
+  const handleBorderRadiusChange = (newValue: Partial<BorderRadiusValues>) => {
+    onBorderRadiusValuesChange({
+      ...borderRadiusValues,
+      ...newValue,
+    });
   };
 
   return (
@@ -38,7 +24,6 @@ const NormalModeControls: FC<NormalModeControlsProps> = ({
           values={borderRadiusValues}
           corner="top-left"
           scope="corner"
-          units={borderRadiusUnits}
           onDataChange={handleBorderRadiusChange}
         />
 
@@ -46,7 +31,6 @@ const NormalModeControls: FC<NormalModeControlsProps> = ({
           values={borderRadiusValues}
           corner="top-right"
           scope="corner"
-          units={borderRadiusUnits}
           onDataChange={handleBorderRadiusChange}
         />
       </div>
@@ -58,7 +42,6 @@ const NormalModeControls: FC<NormalModeControlsProps> = ({
           values={borderRadiusValues}
           corner="bottom-right"
           scope="corner"
-          units={borderRadiusUnits}
           onDataChange={handleBorderRadiusChange}
         />
 
@@ -66,7 +49,6 @@ const NormalModeControls: FC<NormalModeControlsProps> = ({
           values={borderRadiusValues}
           corner="bottom-left"
           scope="corner"
-          units={borderRadiusUnits}
           onDataChange={handleBorderRadiusChange}
         />
       </div>

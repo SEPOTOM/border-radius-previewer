@@ -1,36 +1,29 @@
-import {
-  AdvancedBorderRadiusUnits,
-  AdvancedBorderRadiusValues,
-  BorderRadiusUnits,
-  BorderRadiusValues,
-} from '@/types';
+import { AdvancedBorderRadiusValues, BorderRadiusValues } from '@/types';
 import { ORDERED_CORNERS, ORDERED_RADII } from '@/utils';
 
-export const borderRadiusObjToStr = (
-  values: BorderRadiusValues,
-  units: BorderRadiusUnits,
-): string =>
+export const borderRadiusObjToStr = (values: BorderRadiusValues): string =>
   ORDERED_CORNERS.map((corner) => {
-    const parsedValue = parseFloat(values[corner]);
+    const [value, unit] = values[corner];
+    const parsedValue = parseFloat(value);
 
     if (isNaN(parsedValue) || parsedValue === 0) {
       return '0';
     } else {
-      return `${parsedValue}${units[`${corner}-unit`]}`;
+      return `${parsedValue}${unit}`;
     }
   }).join(' ');
 
 export const borderRadiusObjToStrAdvanced = (
   values: AdvancedBorderRadiusValues,
-  units: AdvancedBorderRadiusUnits,
 ): string => {
   const borderRadiusValues = ORDERED_RADII.map((radius) => {
-    const parsedValue = parseFloat(values[radius]);
+    const [value, unit] = values[radius];
+    const parsedValue = parseFloat(value);
 
     if (isNaN(parsedValue) || parsedValue === 0) {
       return '0';
     } else {
-      return `${parsedValue}${units[`${radius}-unit`]}`;
+      return `${parsedValue}${unit}`;
     }
   });
 

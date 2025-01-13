@@ -1,34 +1,22 @@
 import { FC } from 'react';
 
 import { BorderRadiusInput } from '@/components';
-import { AdvancedBorderRadiusUnits, AdvancedBorderRadiusValues } from '@/types';
+import { AdvancedBorderRadiusValues } from '@/types';
 
 import { AdvancedModeControlsProps } from './types';
 
 const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
   children,
   borderRadiusValues,
-  borderRadiusUnits,
   onBorderRadiusValuesChange,
-  onBorderRadiusUnitsChange,
 }) => {
   const handleBorderRadiusChange = (
-    newValue: Nullable<Partial<AdvancedBorderRadiusValues>>,
-    newUnit: Nullable<Partial<AdvancedBorderRadiusUnits>>,
+    newValue: Partial<AdvancedBorderRadiusValues>,
   ) => {
-    if (newValue) {
-      onBorderRadiusValuesChange({
-        ...borderRadiusValues,
-        ...newValue,
-      });
-    }
-
-    if (newUnit) {
-      onBorderRadiusUnitsChange({
-        ...borderRadiusUnits,
-        ...newUnit,
-      });
-    }
+    onBorderRadiusValuesChange({
+      ...borderRadiusValues,
+      ...newValue,
+    });
   };
 
   return (
@@ -39,14 +27,12 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
             scope="radius"
             corner="horizontal top-left"
             values={borderRadiusValues}
-            units={borderRadiusUnits}
             onDataChange={handleBorderRadiusChange}
           />
           <BorderRadiusInput
             scope="radius"
             corner="vertical top-left"
             values={borderRadiusValues}
-            units={borderRadiusUnits}
             onDataChange={handleBorderRadiusChange}
           />
         </div>
@@ -55,14 +41,12 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
             scope="radius"
             corner="horizontal top-right"
             values={borderRadiusValues}
-            units={borderRadiusUnits}
             onDataChange={handleBorderRadiusChange}
           />
           <BorderRadiusInput
             scope="radius"
             corner="vertical top-right"
             values={borderRadiusValues}
-            units={borderRadiusUnits}
             onDataChange={handleBorderRadiusChange}
           />
         </div>
@@ -74,14 +58,12 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
             scope="radius"
             corner="horizontal bottom-left"
             values={borderRadiusValues}
-            units={borderRadiusUnits}
             onDataChange={handleBorderRadiusChange}
           />
           <BorderRadiusInput
             scope="radius"
             corner="vertical bottom-left"
             values={borderRadiusValues}
-            units={borderRadiusUnits}
             onDataChange={handleBorderRadiusChange}
           />
         </div>
@@ -90,14 +72,12 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
             scope="radius"
             corner="horizontal bottom-right"
             values={borderRadiusValues}
-            units={borderRadiusUnits}
             onDataChange={handleBorderRadiusChange}
           />
           <BorderRadiusInput
             scope="radius"
             corner="vertical bottom-right"
             values={borderRadiusValues}
-            units={borderRadiusUnits}
             onDataChange={handleBorderRadiusChange}
           />
         </div>
