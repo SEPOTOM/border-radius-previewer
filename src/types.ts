@@ -12,12 +12,10 @@ export type AdvancedBorderRadiusValues = Record<
 
 export type BorderRadiusUnit = (typeof BORDER_RADIUS_UNITS)[number];
 
-export interface BorderRadiusUnits {
-  'top-left-unit': BorderRadiusUnit;
-  'top-right-unit': BorderRadiusUnit;
-  'bottom-left-unit': BorderRadiusUnit;
-  'bottom-right-unit': BorderRadiusUnit;
-}
+export type BorderRadiusUnits = Record<
+  `${(typeof ORDERED_CORNERS)[number]}-unit`,
+  BorderRadiusUnit
+>;
 
 export interface AdvancedBorderRadiusUnits {
   'horz-top-left': BorderRadiusUnit;
