@@ -23,14 +23,14 @@ export const borderRadiusObjToStrAdvanced = (
   obj: AdvancedBorderRadiusValues,
 ): string => {
   const borderRadius = [
-    obj['horz-top-left'],
-    obj['horz-top-right'],
-    obj['horz-bottom-right'],
-    obj['horz-bottom-left'],
-    obj['vert-top-left'],
-    obj['vert-top-right'],
-    obj['vert-bottom-right'],
-    obj['vert-bottom-left'],
+    obj['horizontal top-left'],
+    obj['horizontal top-right'],
+    obj['horizontal bottom-right'],
+    obj['horizontal bottom-left'],
+    obj['vertical top-left'],
+    obj['vertical top-right'],
+    obj['vertical bottom-right'],
+    obj['vertical bottom-left'],
   ].map((value) => {
     const parsedValue = parseFloat(value);
 

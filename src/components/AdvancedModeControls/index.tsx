@@ -23,16 +23,16 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
           <input
             type="number"
             aria-label="Horizontal top-left radius"
-            value={borderRadiusValues['horz-top-left']}
-            name="horz-top-left"
+            value={borderRadiusValues['horizontal top-left']}
+            name="horizontal top-left"
             onChange={handleBorderRadiusChange}
             className="outline-focus w-full max-w-full rounded-sm bg-main p-1 text-xl tracking-wider text-secondary"
           />
           <input
             type="number"
             aria-label="Vertical top-left radius"
-            value={borderRadiusValues['vert-top-left']}
-            name="vert-top-left"
+            value={borderRadiusValues['vertical top-left']}
+            name="vertical top-left"
             onChange={handleBorderRadiusChange}
             className="outline-focus w-full max-w-full rounded-sm bg-main p-1 text-xl tracking-wider text-secondary"
           />
@@ -41,16 +41,16 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
           <input
             type="number"
             aria-label="Horizontal top-right radius"
-            value={borderRadiusValues['horz-top-right']}
-            name="horz-top-right"
+            value={borderRadiusValues['horizontal top-right']}
+            name="horizontal top-right"
             onChange={handleBorderRadiusChange}
             className="outline-focus w-full max-w-full rounded-sm bg-main p-1 text-xl tracking-wider text-secondary"
           />
           <input
             type="number"
             aria-label="Vertical top-right radius"
-            value={borderRadiusValues['vert-top-right']}
-            name="vert-top-right"
+            value={borderRadiusValues['vertical top-right']}
+            name="vertical top-right"
             onChange={handleBorderRadiusChange}
             className="outline-focus w-full max-w-full rounded-sm bg-main p-1 text-xl tracking-wider text-secondary"
           />
@@ -62,16 +62,16 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
           <input
             type="number"
             aria-label="Horizontal bottom-left radius"
-            value={borderRadiusValues['horz-bottom-left']}
-            name="horz-bottom-left"
+            value={borderRadiusValues['horizontal bottom-left']}
+            name="horizontal bottom-left"
             onChange={handleBorderRadiusChange}
             className="outline-focus w-full max-w-full rounded-sm bg-main p-1 text-xl tracking-wider text-secondary"
           />
           <input
             type="number"
             aria-label="Vertical bottom-left radius"
-            value={borderRadiusValues['vert-bottom-left']}
-            name="vert-bottom-left"
+            value={borderRadiusValues['vertical bottom-left']}
+            name="vertical bottom-left"
             onChange={handleBorderRadiusChange}
             className="outline-focus w-full max-w-full rounded-sm bg-main p-1 text-xl tracking-wider text-secondary"
           />
@@ -80,16 +80,16 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
           <input
             type="number"
             aria-label="Horizontal bottom-right radius"
-            value={borderRadiusValues['horz-bottom-right']}
-            name="horz-bottom-right"
+            value={borderRadiusValues['horizontal bottom-right']}
+            name="horizontal bottom-right"
             onChange={handleBorderRadiusChange}
             className="outline-focus w-full max-w-full rounded-sm bg-main p-1 text-xl tracking-wider text-secondary"
           />
           <input
             type="number"
             aria-label="Vertical bottom-right radius"
-            value={borderRadiusValues['vert-bottom-right']}
-            name="vert-bottom-right"
+            value={borderRadiusValues['vertical bottom-right']}
+            name="vertical bottom-right"
             onChange={handleBorderRadiusChange}
             className="outline-focus w-full max-w-full rounded-sm bg-main p-1 text-xl tracking-wider text-secondary"
           />

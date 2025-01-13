@@ -1,20 +1,14 @@
-import { BORDER_RADIUS_UNITS, ORDERED_CORNERS } from '@/utils';
+import { BORDER_RADIUS_UNITS, ORDERED_CORNERS, ORDERED_RADII } from '@/utils';
 
 export type BorderRadiusValues = Record<
   (typeof ORDERED_CORNERS)[number],
   string
 >;
 
-export interface AdvancedBorderRadiusValues {
-  'horz-top-left': string;
-  'horz-top-right': string;
-  'horz-bottom-left': string;
-  'horz-bottom-right': string;
-  'vert-top-left': string;
-  'vert-top-right': string;
-  'vert-bottom-left': string;
-  'vert-bottom-right': string;
-}
+export type AdvancedBorderRadiusValues = Record<
+  (typeof ORDERED_RADII)[number],
+  string
+>;
 
 export type BorderRadiusUnit = (typeof BORDER_RADIUS_UNITS)[number];
 

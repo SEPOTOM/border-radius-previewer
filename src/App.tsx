@@ -32,14 +32,14 @@ const App = () => {
   );
   const [advancedBorderRadiusValues, setAdvancedBorderRadiusValues] =
     useState<AdvancedBorderRadiusValues>({
-      'horz-top-left': '0',
-      'horz-top-right': '0',
-      'horz-bottom-right': '0',
-      'horz-bottom-left': '0',
-      'vert-top-left': '0',
-      'vert-top-right': '0',
-      'vert-bottom-right': '0',
-      'vert-bottom-left': '0',
+      'horizontal top-left': '0',
+      'horizontal top-right': '0',
+      'horizontal bottom-right': '0',
+      'horizontal bottom-left': '0',
+      'vertical top-left': '0',
+      'vertical top-right': '0',
+      'vertical bottom-right': '0',
+      'vertical bottom-left': '0',
     });
   const [isAdvanced, setIsAdvanced] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
