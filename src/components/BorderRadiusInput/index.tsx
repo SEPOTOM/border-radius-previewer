@@ -33,7 +33,7 @@ const BorderRadiusInput: FC<BorderRadiusInputProps> = ({
       <input
         type="number"
         aria-label={cornerScope}
-        value={values[corner]}
+        value={values[corner as keyof typeof values]}
         name={corner}
         onChange={handleValueChange}
         className="outline-focus w-full max-w-full rounded-l-sm rounded-r-none border-r border-dashed border-secondary bg-main p-1 text-xl tracking-wider text-secondary"
@@ -42,7 +42,7 @@ const BorderRadiusInput: FC<BorderRadiusInputProps> = ({
         aria-label={`${cornerScope} unit`}
         name={`${corner}-unit`}
         onChange={handleUnitChange}
-        value={units[`${corner}-unit`]}
+        value={units[`${corner}-unit` as keyof typeof units]}
         className="rounded-l-none rounded-r-sm border-l border-dashed border-secondary bg-main p-1 text-xl tracking-wider text-secondary"
       />
     </div>
