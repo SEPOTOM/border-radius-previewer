@@ -29,7 +29,7 @@ const BorderRadiusInput: FC<BorderRadiusInputProps> = ({
   const cornerScope = `${corner} ${scope}`;
 
   return (
-    <div className="flex max-w-36 shrink-0 grow-0 basis-1/2 pl-2">
+    <div className="flex max-w-36 shrink-0 grow-0 basis-1/2">
       <input
         type="number"
         aria-label={cornerScope}
