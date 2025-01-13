@@ -205,6 +205,18 @@ describe('dropdowns of units of measurement for border radius values', () => {
       ).not.toBeInTheDocument();
     });
   });
+
+  it('should have an initial value of %', async () => {
+    await renderInAdvancedMode();
+
+    ORDERED_RADII.forEach((radius) => {
+      expect(
+        screen.getByRole('combobox', {
+          name: new RegExp(`${radius} radius unit`, 'i'),
+        }),
+      ).toHaveDisplayValue('%');
+    });
+  });
 });
 
 async function renderInAdvancedMode() {
