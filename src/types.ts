@@ -26,3 +26,14 @@ export interface BorderRadiusUnits {
   'bottom-left-unit': BorderRadiusUnit;
   'bottom-right-unit': BorderRadiusUnit;
 }
+
+export interface AdvancedBorderRadiusUnits {
+  'horz-top-left': BorderRadiusUnit;
+  'horz-top-right': BorderRadiusUnit;
+  'horz-bottom-left': BorderRadiusUnit;
+  'horz-bottom-right': BorderRadiusUnit;
+  'vert-top-left': BorderRadiusUnit;
+  'vert-top-right': BorderRadiusUnit;
+  'vert-bottom-left': BorderRadiusUnit;
+  'vert-bottom-right': BorderRadiusUnit;
+}
