@@ -93,6 +93,15 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
           />
         </div>
       </div>
+
+      <select aria-label="Horizontal top-left radius unit" />
+      <select aria-label="Horizontal top-right radius unit" />
+      <select aria-label="Horizontal bottom-left radius unit" />
+      <select aria-label="Horizontal bottom-right radius unit" />
+      <select aria-label="Vertical top-left radius unit" />
+      <select aria-label="Vertical top-right radius unit" />
+      <select aria-label="Vertical bottom-left radius unit" />
+      <select aria-label="Vertical bottom-right radius unit" />
     </>
   );
 };
