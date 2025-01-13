@@ -17,13 +17,7 @@ export type BorderRadiusUnits = Record<
   BorderRadiusUnit
 >;
 
-export interface AdvancedBorderRadiusUnits {
-  'horz-top-left': BorderRadiusUnit;
-  'horz-top-right': BorderRadiusUnit;
-  'horz-bottom-left': BorderRadiusUnit;
-  'horz-bottom-right': BorderRadiusUnit;
-  'vert-top-left': BorderRadiusUnit;
-  'vert-top-right': BorderRadiusUnit;
-  'vert-bottom-left': BorderRadiusUnit;
-  'vert-bottom-right': BorderRadiusUnit;
-}
+export type AdvancedBorderRadiusUnits = Record<
+  `${(typeof ORDERED_RADII)[number]}-unit`,
+  BorderRadiusUnit
+>;
