@@ -1,5 +1,7 @@
 import { ChangeEvent, FC } from 'react';
 
+import { UnitDropdown } from '@/components';
+
 import { AdvancedModeControlsProps } from './types';
 
 const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
@@ -94,14 +96,38 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
         </div>
       </div>
 
-      <select aria-label="Horizontal top-left radius unit" />
-      <select aria-label="Horizontal top-right radius unit" />
-      <select aria-label="Horizontal bottom-left radius unit" />
-      <select aria-label="Horizontal bottom-right radius unit" />
-      <select aria-label="Vertical top-left radius unit" />
-      <select aria-label="Vertical top-right radius unit" />
-      <select aria-label="Vertical bottom-left radius unit" />
-      <select aria-label="Vertical bottom-right radius unit" />
+      <UnitDropdown
+        aria-label="Horizontal top-left radius unit"
+        defaultValue="%"
+      />
+      <UnitDropdown
+        aria-label="Horizontal top-right radius unit"
+        defaultValue="%"
+      />
+      <UnitDropdown
+        aria-label="Horizontal bottom-left radius unit"
+        defaultValue="%"
+      />
+      <UnitDropdown
+        aria-label="Horizontal bottom-right radius unit"
+        defaultValue="%"
+      />
+      <UnitDropdown
+        aria-label="Vertical top-left radius unit"
+        defaultValue="%"
+      />
+      <UnitDropdown
+        aria-label="Vertical top-right radius unit"
+        defaultValue="%"
+      />
+      <UnitDropdown
+        aria-label="Vertical bottom-left radius unit"
+        defaultValue="%"
+      />
+      <UnitDropdown
+        aria-label="Vertical bottom-right radius unit"
+        defaultValue="%"
+      />
     </>
   );
 };
