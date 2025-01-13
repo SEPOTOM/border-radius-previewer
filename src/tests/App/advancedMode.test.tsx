@@ -185,6 +185,20 @@ describe('inputs for specifying corresponding radii', () => {
   });
 });
 
+describe('dropdowns of units of measurement for border radius values', () => {
+  it('should be displayed in advanced mode', async () => {
+    await renderInAdvancedMode();
+
+    radii.forEach((radius) => {
+      expect(
+        screen.getByRole('combobox', {
+          name: new RegExp(`${radius} radius unit`, 'i'),
+        }),
+      ).toBeInTheDocument();
+    });
+  });
+});
+
 async function renderInAdvancedMode() {
   const renderResults = renderWithUser(<App />);
 
