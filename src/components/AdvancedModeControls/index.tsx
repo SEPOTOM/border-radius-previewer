@@ -34,7 +34,7 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
   return (
     <>
       <div className="mx-auto flex w-full max-w-[432px] justify-between overflow-hidden sm:justify-center sm:gap-36">
-        <div className="flex max-w-36 shrink-0 grow-0 basis-1/2 flex-col gap-y-3 pr-2">
+        <div className="flex h-full max-w-36 shrink-0 grow-0 basis-1/2 flex-col gap-y-3">
           <BorderRadiusInput
             scope="radius"
             corner="horizontal top-left"
@@ -50,7 +50,7 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
             onDataChange={handleBorderRadiusChange}
           />
         </div>
-        <div className="flex max-w-36 shrink-0 grow-0 basis-1/2 flex-col gap-y-3 pl-2">
+        <div className="flex h-full max-w-36 shrink-0 grow-0 basis-1/2 flex-col gap-y-3">
           <BorderRadiusInput
             scope="radius"
             corner="horizontal top-right"
@@ -69,7 +69,7 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
       </div>
       {children}
       <div className="mx-auto flex w-full max-w-[432px] justify-between overflow-hidden sm:justify-center sm:gap-36">
-        <div className="flex max-w-36 shrink-0 grow-0 basis-1/2 flex-col gap-y-3 pr-2">
+        <div className="flex h-full max-w-36 shrink-0 grow-0 basis-1/2 flex-col gap-y-3">
           <BorderRadiusInput
             scope="radius"
             corner="horizontal bottom-left"
@@ -85,7 +85,7 @@ const AdvancedModeControls: FC<AdvancedModeControlsProps> = ({
             onDataChange={handleBorderRadiusChange}
           />
         </div>
-        <div className="flex max-w-36 shrink-0 grow-0 basis-1/2 flex-col gap-y-3 pl-2">
+        <div className="flex h-full max-w-36 shrink-0 grow-0 basis-1/2 flex-col gap-y-3">
           <BorderRadiusInput
             scope="radius"
             corner="horizontal bottom-right"
