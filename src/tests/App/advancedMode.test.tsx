@@ -24,11 +24,7 @@ describe('App in advanced mode', () => {
 
   it('should keep the rounding after switching to normal mode', async () => {
     const values = ['3', '73', '71', '54', '180', '768', '16', '90'];
-    const rawExpectedResult = values.map(
-      (value) => `${value}${defaultMeasurementUnit}`,
-    );
-    rawExpectedResult.splice(4, 0, '/');
-    const expectedResult = rawExpectedResult.join(' ');
+    const expectedResult = getExpectedResult(values);
     const { user } = await renderInAdvancedMode();
 
     for (let i = 0; i < ORDERED_RADII.length; i += 1) {
@@ -75,11 +71,7 @@ describe('App in advanced mode', () => {
 
   it('should copy the value of the border radius to the clipboard after clicking the copy button', async () => {
     const values = ['0', '25', '0', '0', '73', '83', '0', '16'];
-    const rawExpectedResult = values.map((value) =>
-      value === '0' ? value : `${value}${defaultMeasurementUnit}`,
-    );
-    rawExpectedResult.splice(4, 0, '/');
-    const expectedResult = rawExpectedResult.join(' ');
+    const expectedResult = getExpectedResult(values);
     const { user } = await renderInAdvancedMode();
     const writeTextSpy = vi.spyOn(navigator.clipboard, 'writeText');
 
@@ -111,11 +103,7 @@ describe('App in advanced mode', () => {
   it('should show the current value in the output field', async () => {
     const { user } = await renderInAdvancedMode();
     const values = ['983', '25', '51', '9789', '825', '5', '78', '19'];
-    const rawExpectedResult = values.map(
-      (value) => `${value}${defaultMeasurementUnit}`,
-    );
-    rawExpectedResult.splice(4, 0, '/');
-    const expectedResult = rawExpectedResult.join(' ');
+    const expectedResult = getExpectedResult(values);
 
     for (let i = 0; i < ORDERED_RADII.length; i += 1) {
       await user.type(
@@ -271,4 +259,14 @@ async function renderInAdvancedMode() {
   await renderResults.user.click(screen.getByRole('switch', { name: /mode/i }));
 
   return renderResults;
+}
+
+function getExpectedResult(values: string[]) {
+  const rawExpectedResult = values.map((value) =>
+    value === '0' ? value : `${value}${defaultMeasurementUnit}`,
+  );
+
+  rawExpectedResult.splice(4, 0, '/');
+
+  return rawExpectedResult.join(' ');
 }
