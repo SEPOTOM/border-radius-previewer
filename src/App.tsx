@@ -8,6 +8,7 @@ import {
   PreviewBox,
 } from '@/components';
 import {
+  AdvancedBorderRadiusUnits,
   AdvancedBorderRadiusValues,
   BorderRadiusUnits,
   BorderRadiusValues,
@@ -41,6 +42,17 @@ const App = () => {
       'vertical bottom-right': '0',
       'vertical bottom-left': '0',
     });
+  const [advancedBorderRadiusUnits, setAdvancedBorderRadiusUnits] =
+    useState<AdvancedBorderRadiusUnits>({
+      'horizontal top-left-unit': '%',
+      'horizontal top-right-unit': '%',
+      'horizontal bottom-right-unit': '%',
+      'horizontal bottom-left-unit': '%',
+      'vertical top-left-unit': '%',
+      'vertical top-right-unit': '%',
+      'vertical bottom-right-unit': '%',
+      'vertical bottom-left-unit': '%',
+    });
   const [isAdvanced, setIsAdvanced] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [copyError, setCopyError] = useState<Nullable<Error>>(null);
@@ -51,6 +63,7 @@ const App = () => {
   );
   const advancedBorderRadius = borderRadiusObjToStrAdvanced(
     advancedBorderRadiusValues,
+    advancedBorderRadiusUnits,
   );
 
   const handleBorderRadiusValuesChange = (newValues: BorderRadiusValues) => {
@@ -65,6 +78,12 @@ const App = () => {
     newValues: AdvancedBorderRadiusValues,
   ) => {
     setAdvancedBorderRadiusValues(newValues);
+  };
+
+  const handleAdvancedBorderRadiusUnitsChange = (
+    newUnits: AdvancedBorderRadiusUnits,
+  ) => {
+    setAdvancedBorderRadiusUnits(newUnits);
   };
 
   const handleCopyButtonClick = async () => {
@@ -105,7 +124,9 @@ const App = () => {
       {isAdvanced ?
         <AdvancedModeControls
           borderRadiusValues={advancedBorderRadiusValues}
+          borderRadiusUnits={advancedBorderRadiusUnits}
           onBorderRadiusValuesChange={handleAdvancedBorderRadiusValuesChange}
+          onBorderRadiusUnitsChange={handleAdvancedBorderRadiusUnitsChange}
         >
           <PreviewBox borderRadius={advancedBorderRadius} />
         </AdvancedModeControls>

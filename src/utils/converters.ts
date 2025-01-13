@@ -1,9 +1,10 @@
 import {
+  AdvancedBorderRadiusUnits,
   AdvancedBorderRadiusValues,
   BorderRadiusUnits,
   BorderRadiusValues,
 } from '@/types';
-import { ORDERED_CORNERS } from '@/utils';
+import { ORDERED_CORNERS, ORDERED_RADII } from '@/utils';
 
 export const borderRadiusObjToStr = (
   values: BorderRadiusValues,
@@ -20,28 +21,20 @@ export const borderRadiusObjToStr = (
   }).join(' ');
 
 export const borderRadiusObjToStrAdvanced = (
-  obj: AdvancedBorderRadiusValues,
+  values: AdvancedBorderRadiusValues,
+  units: AdvancedBorderRadiusUnits,
 ): string => {
-  const borderRadius = [
-    obj['horizontal top-left'],
-    obj['horizontal top-right'],
-    obj['horizontal bottom-right'],
-    obj['horizontal bottom-left'],
-    obj['vertical top-left'],
-    obj['vertical top-right'],
-    obj['vertical bottom-right'],
-    obj['vertical bottom-left'],
-  ].map((value) => {
-    const parsedValue = parseFloat(value);
+  const borderRadiusValues = ORDERED_RADII.map((radius) => {
+    const parsedValue = parseFloat(values[radius]);
 
     if (isNaN(parsedValue) || parsedValue === 0) {
       return '0';
     } else {
-      return `${parsedValue}px`;
+      return `${parsedValue}${units[`${radius}-unit`]}`;
     }
   });
 
-  borderRadius.splice(4, 0, '/');
+  borderRadiusValues.splice(4, 0, '/');
 
-  return borderRadius.join(' ');
+  return borderRadiusValues.join(' ');
 };
