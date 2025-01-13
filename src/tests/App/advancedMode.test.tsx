@@ -2,17 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import App from '@/App';
 import { renderWithUser } from '@/tests/utils';
-
-const radii = [
-  'horizontal top-left',
-  'horizontal top-right',
-  'horizontal bottom-right',
-  'horizontal bottom-left',
-  'vertical top-left',
-  'vertical top-right',
-  'vertical bottom-right',
-  'vertical bottom-left',
-];
+import { ORDERED_RADII } from '@/utils';
 
 describe('App in advanced mode', () => {
   it('should show the preview box', async () => {
@@ -33,10 +23,10 @@ describe('App in advanced mode', () => {
     const values = ['3', '73', '71', '54', '180', '768', '16', '90'];
     const { user } = await renderInAdvancedMode();
 
-    for (let i = 0; i < radii.length; i += 1) {
+    for (let i = 0; i < ORDERED_RADII.length; i += 1) {
       await user.type(
         screen.getByRole('spinbutton', {
-          name: new RegExp(`${radii[i]} radius`, 'i'),
+          name: new RegExp(`${ORDERED_RADII[i]} radius`, 'i'),
         }),
         values[i],
       );
@@ -55,7 +45,7 @@ describe('App in advanced mode', () => {
   describe('should keep the values of the radii inputs after switching to normal mode', () => {
     const values = ['97', '1000', '657', '300', '39', '125', '98', '797'];
 
-    radii.forEach((radius, index) => {
+    ORDERED_RADII.forEach((radius, index) => {
       it(radius, async () => {
         const { user } = await renderInAdvancedMode();
         await user.type(
@@ -82,9 +72,11 @@ describe('App in advanced mode', () => {
     const { user } = await renderInAdvancedMode();
     const writeTextSpy = vi.spyOn(navigator.clipboard, 'writeText');
 
-    for (let i = 0; i < radii.length; i += 1) {
+    for (let i = 0; i < ORDERED_RADII.length; i += 1) {
       await user.type(
-        screen.getByRole('spinbutton', { name: new RegExp(radii[i], 'i') }),
+        screen.getByRole('spinbutton', {
+          name: new RegExp(ORDERED_RADII[i], 'i'),
+        }),
         values[i],
       );
     }
@@ -109,9 +101,11 @@ describe('App in advanced mode', () => {
     const { user } = await renderInAdvancedMode();
     const values = ['983', '25', '51', '9789', '825', '5', '78', '19'];
 
-    for (let i = 0; i < radii.length; i += 1) {
+    for (let i = 0; i < ORDERED_RADII.length; i += 1) {
       await user.type(
-        screen.getByRole('spinbutton', { name: new RegExp(radii[i], 'i') }),
+        screen.getByRole('spinbutton', {
+          name: new RegExp(ORDERED_RADII[i], 'i'),
+        }),
         values[i],
       );
     }
@@ -126,7 +120,7 @@ describe('inputs for specifying corresponding radii', () => {
   it('should be displayed in advanced mode', async () => {
     await renderInAdvancedMode();
 
-    radii.forEach((radius) => {
+    ORDERED_RADII.forEach((radius) => {
       expect(
         screen.getByRole('spinbutton', {
           name: new RegExp(`${radius} radius`, 'i'),
@@ -138,7 +132,7 @@ describe('inputs for specifying corresponding radii', () => {
   it('should be hidden in normal mode', () => {
     render(<App />);
 
-    radii.forEach((radius) => {
+    ORDERED_RADII.forEach((radius) => {
       expect(
         screen.queryByRole('spinbutton', {
           name: new RegExp(`${radius} radius`, 'i'),
@@ -150,7 +144,7 @@ describe('inputs for specifying corresponding radii', () => {
   it('should have an initial value of 0', async () => {
     await renderInAdvancedMode();
 
-    radii.forEach((radius) => {
+    ORDERED_RADII.forEach((radius) => {
       expect(
         screen.getByRole('spinbutton', {
           name: new RegExp(`${radius} radius`, 'i'),
@@ -162,7 +156,7 @@ describe('inputs for specifying corresponding radii', () => {
   describe('should update the value of the appropriate radius', () => {
     const values = ['87', '92', '134', '56', '10', '303', '47', '28'];
 
-    radii.forEach((radius, index) => {
+    ORDERED_RADII.forEach((radius, index) => {
       it(radius, async () => {
         const { user } = await renderInAdvancedMode();
 
@@ -189,7 +183,7 @@ describe('dropdowns of units of measurement for border radius values', () => {
   it('should be displayed in advanced mode', async () => {
     await renderInAdvancedMode();
 
-    radii.forEach((radius) => {
+    ORDERED_RADII.forEach((radius) => {
       expect(
         screen.getByRole('combobox', {
           name: new RegExp(`${radius} radius unit`, 'i'),

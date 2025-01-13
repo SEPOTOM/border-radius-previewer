@@ -6,3 +6,14 @@ export const ORDERED_CORNERS = [
   'bottom-right',
   'bottom-left',
 ] as const;
+
+export const ORDERED_RADII = [
+  'horizontal top-left',
+  'horizontal top-right',
+  'horizontal bottom-right',
+  'horizontal bottom-left',
+  'vertical top-left',
+  'vertical top-right',
+  'vertical bottom-right',
+  'vertical bottom-left',
+] as const;
