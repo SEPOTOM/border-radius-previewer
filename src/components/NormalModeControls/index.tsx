@@ -40,14 +40,14 @@ const NormalModeControls: FC<NormalModeControlsProps> = ({
       <div className="mx-auto flex w-full max-w-[432px] justify-between overflow-hidden sm:justify-center sm:gap-36">
         <BorderRadiusInput
           values={borderRadiusValues}
-          corner="bottom-right"
+          corner="bottom-left"
           scope="corner"
           onDataChange={handleBorderRadiusChange}
         />
 
         <BorderRadiusInput
           values={borderRadiusValues}
-          corner="bottom-left"
+          corner="bottom-right"
           scope="corner"
           onDataChange={handleBorderRadiusChange}
         />
